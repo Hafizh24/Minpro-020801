@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import MyCarousel from "../components/Carousel";
-import { MyCard } from "../components/Card";
+import { EventsCard } from "../components/Card";
 import axios from "axios";
 import Category from "../components/Category";
 
@@ -28,7 +28,17 @@ const HomePage = () => {
       <Category />
       <div className="flex gap-x-5 flex-wrap justify-center">
         {data.map((item) => (
-          <MyCard item={item} key={item.id} />
+          <EventsCard key={item.id}>
+            <EventsCard.Header image={item.url} />
+            <EventsCard.Body
+              name={item.name}
+              price={item.price.toLocaleString("id-ID", {
+                style: "currency",
+                currency: "IDR",
+              })}
+            />
+            <EventsCard.Footer />
+          </EventsCard>
         ))}
       </div>
     </div>
