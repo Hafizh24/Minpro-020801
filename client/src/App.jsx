@@ -1,12 +1,7 @@
 import MyCarousel from "./components/Carousel";
-
 import Navbar from "./components/Navbar";
 import { Register } from "./components/register";
 import { LogIn } from "./components/login";
-
-
-
-
 
 function App() {
   return (
@@ -15,7 +10,6 @@ function App() {
       <MyCarousel />
       <LogIn />
       <Register />
-    
     </>
   );
 }
