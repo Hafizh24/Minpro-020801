@@ -1,0 +1,94 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "accusamus beatae",
+      "url": "https://picsum.photos/500/200?random=1",
+      "price": 175000
+    },
+    {
+      "id": 2,
+      "name": "reprehenderit",
+      "url": "https://picsum.photos/500/200?random=12",
+      "price": 125000
+    },
+    {
+      "id": 3,
+      "name": "officia",
+      "url": "https://picsum.photos/500/200?random=21",
+      "price": 376000
+    },
+    {
+      "id": 4,
+      "name": "culpa",
+      "url": "https://picsum.photos/500/200?random=17",
+      "price": 225000
+    },
+    {
+      "id": 5,
+      "name": "natus nisi",
+      "url": "https://picsum.photos/500/200?random=111",
+      "price": 330000
+    },
+    {
+      "id": 6,
+      "name": "accusamus ea",
+      "url": "https://picsum.photos/500/200?random=131",
+      "price": 85000
+    },
+    {
+      "id": 7,
+      "name": "officia delectus",
+      "url": "https://picsum.photos/500/200?random=101",
+      "price": 105000
+    },
+    {
+      "id": 8,
+      "name": "aut porro",
+      "url": "https://picsum.photos/500/200?random=118",
+      "price": 150000
+    },
+    {
+      "id": 9,
+      "name": "qui",
+      "url": "https://picsum.photos/500/200?random=201",
+      "price": 55000
+    },
+    {
+      "id": 10,
+      "name": "beatae et",
+      "url": "https://picsum.photos/500/200?random=192",
+      "price": 235000
+    },
+    {
+      "id": 11,
+      "name": "nihil at amet",
+      "url": "https://picsum.photos/500/200?random=132",
+      "price": 225000
+    },
+    {
+      "id": 12,
+      "name": "mollitia solutas",
+      "url": "https://picsum.photos/500/200?random=175",
+      "price": 133500
+    },
+    {
+      "id": 13,
+      "name": "repudiandae iusto",
+      "url": "https://picsum.photos/500/200?random=10",
+      "price": 520000
+    },
+    {
+      "id": 14,
+      "name": "est necessitatibus",
+      "url": "https://picsum.photos/500/200?random=111",
+      "price": 425000
+    },
+    {
+      "id": 15,
+      "name": "modfl neceslo",
+      "url": "https://picsum.photos/500/200?random=207",
+      "price": 800000
+    }
+  ]
+}

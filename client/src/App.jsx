@@ -1,21 +1,19 @@
-import MyCarousel from "./components/Carousel";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import ErrorPage from "./pages/ErrorPage";
 
-import Navbar from "./components/Navbar";
-import { Register } from "./components/register";
-import { LogIn } from "./components/login";
-
-
-
-
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <HomePage />,
+    errorElement: <ErrorPage />,
+  },
+]);
 
 function App() {
   return (
     <>
-      <Navbar />
-      <MyCarousel />
-      <LogIn />
-      <Register />
-    
+      <RouterProvider router={router} />
     </>
   );
 }
