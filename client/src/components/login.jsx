@@ -10,13 +10,17 @@ import * as Yup from "yup";
 import axios from "axios";
 
 const RegisterSchema = Yup.object().shape({
-  username: Yup.string().required("Username is required"),
   email: Yup.string().required("Email is required").email("Invalid email format"),
   password: Yup.string().min(8, "Minimum 8 characters")
 });
 
-
-
+const handleSubmit = async (data) => {
+    try {
+      await axios.post("http://localhost:2000/users", data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
    
   export const LogIn = () => {
@@ -28,7 +32,7 @@ const RegisterSchema = Yup.object().shape({
         <Typography color="gray" className="mt-1 font-normal">
           Enter your Karcis account
         </Typography>
-        <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
+        <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96 lg:mt-40">
           <div className="mb-4 flex flex-col gap-6">
             <Input size="lg" label="Email or Username" />
             <Input type="password" size="lg" label="Password" />

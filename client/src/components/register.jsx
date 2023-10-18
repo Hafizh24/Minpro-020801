@@ -21,6 +21,17 @@ const RegisterSchema = Yup.object().shape({
    
   export const Register = () => {
     return (
+      <Formik
+      initialValues={{
+        email: "",
+        password: "",
+      }}
+      validationSchema={RegisterSchema}
+      onSubmit={(values, action) => {
+        handleSubmit(values);
+        action.resetForm
+      }}
+      >
       <Card color="transparent" shadow={false}>
         <Typography variant="h4" color="blue-gray">
           Sign Up
@@ -63,5 +74,6 @@ const RegisterSchema = Yup.object().shape({
           </Typography>
         </form>
       </Card>
+      </Formik>
     );
   }
