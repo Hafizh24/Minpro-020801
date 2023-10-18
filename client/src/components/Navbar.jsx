@@ -62,12 +62,16 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="flex gap-x-6 mr-8">
-        <button className=" border py-2 px-4 rounded-full border-brown-200 text-blue-gray-900">
-          Sign In
-        </button>
-        <button className=" border bg-brown-100 rounded-full py-2 px-4 border-brown-200 text-blue-gray-900">
-          Sign Up
-        </button>
+        <Link to="/signin">
+          <button className=" border py-2 px-4 rounded-full border-brown-200 text-blue-gray-900">
+            Sign In
+          </button>
+        </Link>
+        <Link to="/signup">
+          <button className=" border bg-brown-100 rounded-full py-2 px-4 border-brown-200 text-blue-gray-900">
+            Sign Up
+          </button>
+        </Link>
       </div>
     </nav>
   );

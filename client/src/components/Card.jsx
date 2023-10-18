@@ -22,13 +22,13 @@ const Header = (props) => {
 };
 
 const Body = (props) => {
-  const { name, price } = props;
+  const { name, price, date } = props;
   return (
     <CardBody className="mb-10">
       <Typography className="font-sans tracking-widest  text-blue-gray-900 font-semibold">
         {name}
       </Typography>
-      <Typography className="font-sans text-sm mb-4">05 oct 2023</Typography>
+      <Typography className="font-sans text-sm mb-4">{date}</Typography>
       <Typography className="font-sans text-sm text-blue-gray-900 font-semibold">
         {price}
       </Typography>
