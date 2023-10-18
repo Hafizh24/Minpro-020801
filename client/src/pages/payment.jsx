@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import  axios  from "axios";
 import {
   Card,
   CardHeader,
@@ -13,6 +14,22 @@ const PaymentPage = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
+  const [data, setData] = useState({})
+
+  const fetchApi = async () => {
+    try {
+      await axios.get("http://localhost:2000/data/1").then((response) => {
+        // console.log(response.data);
+        setData(response.data);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchApi()
+  },[])
 
   const handlePaymentMethodChange = (method) => {
     setPaymentMethod(method);
@@ -39,10 +56,11 @@ const PaymentPage = () => {
         <div className="flex">
           <div className="w-1/2 p-4">
             <img
-              src="https://i.pinimg.com/originals/3c/11/7f/3c117f39737cbf55ec8205eb329a5c56.jpg"
+              src={data.url}
               alt="card-image"
               className="h-full w-full object-cover"
             />
+        
           </div>
           <div className="w-1/2 p-4">
             <Typography color="blue-gray" className="font-medium">
@@ -73,7 +91,7 @@ const PaymentPage = () => {
               color="gray"
               className="font-normal opacity-75 text-center"
             >
-              Rp 95.000
+             {data.price}
             </Typography>
             </div>
             <div className="flex flex-col">
