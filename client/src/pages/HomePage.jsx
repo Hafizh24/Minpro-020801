@@ -7,12 +7,16 @@ import Category from "../components/Category";
 
 const HomePage = () => {
   const [data, setData] = useState([]);
+  const [category, setCategory] = useState("");
+  // console.log(category);
   const fetchApi = async () => {
     try {
-      await axios.get("http://localhost:2000/data").then((response) => {
-        // console.log(response.data);
-        setData(response.data);
-      });
+      await axios
+        .get(`http://localhost:2000/data?location=${category}&_limit=4`)
+        .then((response) => {
+          // console.log(response.data);
+          setData(response.data);
+        });
     } catch (error) {
       console.log(error);
     }
@@ -20,18 +24,19 @@ const HomePage = () => {
 
   useEffect(() => {
     fetchApi();
-  }, []);
+  }, [category]);
   return (
     <div>
       <Navbar />
       <MyCarousel />
-      <Category />
+      <Category setCategory={setCategory} />
       <div className="flex gap-x-5 flex-wrap justify-center">
         {data.map((item) => (
           <EventsCard key={item.id}>
             <EventsCard.Header image={item.url} />
             <EventsCard.Body
               name={item.name}
+              date={item.date}
               price={item.price.toLocaleString("id-ID", {
                 style: "currency",
                 currency: "IDR",

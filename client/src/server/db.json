@@ -4,91 +4,121 @@
       "id": 1,
       "name": "accusamus beatae",
       "url": "https://picsum.photos/500/200?random=1",
-      "price": 175000
+      "price": 175000,
+      "location": "Bandung",
+      "date": "2023-10-25"
     },
     {
       "id": 2,
       "name": "reprehenderit",
       "url": "https://picsum.photos/500/200?random=12",
-      "price": 125000
+      "price": 125000,
+      "location": "Jakarta",
+      "date": "2023-12-24"
     },
     {
       "id": 3,
       "name": "officia",
       "url": "https://picsum.photos/500/200?random=21",
-      "price": 376000
+      "price": 376000,
+      "location": "Bandung",
+      "date": "2023-11-01"
     },
     {
       "id": 4,
       "name": "culpa",
       "url": "https://picsum.photos/500/200?random=17",
-      "price": 225000
+      "price": 225000,
+      "location": "Bali",
+      "date": "2023-12-25"
     },
     {
       "id": 5,
       "name": "natus nisi",
       "url": "https://picsum.photos/500/200?random=111",
-      "price": 330000
+      "price": 330000,
+      "location": "Bandung",
+      "date": "2023-12-12"
     },
     {
       "id": 6,
       "name": "accusamus ea",
       "url": "https://picsum.photos/500/200?random=131",
-      "price": 85000
+      "price": 85000,
+      "location": "Jakarta",
+      "date": "2023-11-11"
     },
     {
       "id": 7,
       "name": "officia delectus",
       "url": "https://picsum.photos/500/200?random=101",
-      "price": 105000
+      "price": 105000,
+      "location": "Bali",
+      "date": "2023-12-29"
     },
     {
       "id": 8,
       "name": "aut porro",
       "url": "https://picsum.photos/500/200?random=118",
-      "price": 150000
+      "price": 150000,
+      "location": "Bandung",
+      "date": "2024-01-01"
     },
     {
       "id": 9,
       "name": "qui",
       "url": "https://picsum.photos/500/200?random=201",
-      "price": 55000
+      "price": 55000,
+      "location": "Bandung",
+      "date": "2023-24-27"
     },
     {
       "id": 10,
       "name": "beatae et",
       "url": "https://picsum.photos/500/200?random=192",
-      "price": 235000
+      "price": 235000,
+      "location": "Jakarta",
+      "date": "2023-12-15"
     },
     {
       "id": 11,
       "name": "nihil at amet",
       "url": "https://picsum.photos/500/200?random=132",
-      "price": 225000
+      "price": 225000,
+      "location": "Jakarta",
+      "date": "2023-10-30"
     },
     {
       "id": 12,
       "name": "mollitia solutas",
       "url": "https://picsum.photos/500/200?random=175",
-      "price": 133500
+      "price": 133500,
+      "location": "Bali",
+      "date": "2023-12-31"
     },
     {
       "id": 13,
       "name": "repudiandae iusto",
       "url": "https://picsum.photos/500/200?random=10",
-      "price": 520000
+      "price": 520000,
+      "location": "Bali",
+      "date": "2023-11-10"
     },
     {
       "id": 14,
       "name": "est necessitatibus",
       "url": "https://picsum.photos/500/200?random=111",
-      "price": 425000
+      "price": 425000,
+      "location": "Jakarta",
+      "date": "2023-10-28"
     },
     {
       "id": 15,
       "name": "modfl neceslo",
       "url": "https://picsum.photos/500/200?random=207",
-      "price": 800000
+      "price": 800000,
+      "location": "Bali",
+      "date": "2023-11-28"
     }
   ]
 }
