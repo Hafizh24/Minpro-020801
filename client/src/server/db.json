@@ -6,7 +6,9 @@
       "url": "https://picsum.photos/500/200?random=1",
       "price": 175000,
       "location": "Bandung",
-      "date": "2023-10-25"
+      "date": "2023-10-25",
+      "time": "20:00 - 22:00 WIB",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint ipsa aliquam aperiam maxime corrupti dolorem, minus perferendis dolorum explicabo repellat officiis, quaerat quod unde molestiae nisi atque aspernatur minima, nostrum adipisci possimus vitae tempora cupiditate! Perspiciatis earum eligendi nam nihil quos numquam, inventore eum tempore, autem vitae consequuntur, nisi ducimus?"
     },
     {
       "id": 2,
@@ -119,6 +121,27 @@
       "price": 800000,
       "location": "Bali",
       "date": "2023-11-28"
+    }
+  ],
+  "users": [
+    {
+      "username": "lala",
+      "email": "lala@email.com",
+      "password": "password",
+      "id": 1
+    },
+
+    {
+      "name": "riri",
+      "email": "riri@emai",
+      "password": "passaasaa",
+      "id": 2
+    },
+    {
+      "name": "racing",
+      "email": "mamang@racing.com",
+      "password": "password",
+      "id": 3
     }
   ]
 }
