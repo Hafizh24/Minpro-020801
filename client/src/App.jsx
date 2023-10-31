@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import ErrorPage from "./pages/ErrorPage";
 import DiscoveryPage from "./pages/DiscoveryPage";
-import { Register } from "./components/register";
+import { Register }  from "./components/register";
 import { LogIn } from "./components/login";
 import CreateEventPage from "./pages/CreateEventPage";
 import DetailEventPage from "./pages/DetailEventPage";

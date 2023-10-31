@@ -2,6 +2,10 @@ import { Card, Input, Checkbox, Button, Typography } from "@material-tailwind/re
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+// import { setData } from '../redux/usersSlice';
+
 
 const RegisterSchema = Yup.object({
   name: Yup.string().required("name is required"),
@@ -10,24 +14,55 @@ const RegisterSchema = Yup.object({
 });
 
 export const Register = () => {
+  // const dispatch = useDispatch();
+  //   const navigate = useNavigate();
+  //   const toast = useToast();
+  //   const [showErrorOutline, setShowErrorOutline] = useState(false);
+  //   const [username, setUsername] = useState(''); // State untuk menyimpan nama pengguna
+  //   const [referralCode, setReferralCode] = useState('');
+  //   const data_referral = useRef();
+
+
   const handleSubmit = async (data) => {
     try {
       console.log(data);
-      await axios.post("http://localhost:2000/users", data);
+      // await axios.post("http://localhost:2000/users", data);
     } catch (err) {
       console.log(err);
     }
   };
+    //   const handleSubmitRegister = async (data) =>{
+    //     data.referral = referralCode;
+    //     try{
+    //         const response = await axios.post("http://localhost:2000/users", data);
+    //     }catch(err){
+    //         console.log(err);
+    //     }
+    // };
+
+  // const referralCodeGenerator = () => {
+  //   if (data_referral.current.value.length >= 2) {
+  //     const words = data_referral.current.value.split(' ')
+  //     const userChars = words
+  //     .map((word) => word.charAt(0).toUpperCase()).join('');
+  //     const randomChars = Math.random().toString(36).substring(2, 6).toUpperCase();
+  //     const generatedCode = `${userChars}${randomChars}`;
+  //     setReferralCode(generatedCode);
+  //   } else {
+  //     alert('name must at least contain 2 characters');
+  //   }
+  // };
 
   const formik = useFormik({
     initialValues: {
       name: "",
       email: "",
       password: "",
+      // referral: referralCodeGenerator()
     },
     validationSchema: RegisterSchema,
     onSubmit: (values, action) => {
-      console.log(values);
+      // console.log(values);
       handleSubmit(values);
       action.resetForm();
     },
@@ -35,6 +70,8 @@ export const Register = () => {
 
   return (
     <>
+    <div className="bg-gray-200 h-screen flex items-center justify-center">
+    <div className="flex items-center justify-center">
       <Card color="transparent" shadow={false}>
         <Typography variant="h4" color="blue-gray">
           Sign Up
@@ -73,6 +110,7 @@ export const Register = () => {
               size="lg"
               label="Password"
               name="password"
+
               onChange={formik.handleChange}
               value={formik.values.password}
               error={formik.touched.password && Boolean(formik.errors.password)}
@@ -80,6 +118,11 @@ export const Register = () => {
             {formik.touched.password && formik.errors.password ? (
               <div className=" text-red-900">{formik.errors.password}</div>
             ) : null}
+            <Input
+             size="lg"
+             label="Referral"
+             name="referral"
+            />
           </div>
           <Checkbox
             label={
@@ -100,12 +143,14 @@ export const Register = () => {
           </Button>
           <Typography color="gray" className="mt-4 text-center font-normal">
             Already have an account?{" "}
-            <a href="#" className="font-medium hover:text-gray-900">
-              Sign In
+            <a href="/signin" className="font-medium hover:text-gray-900">
+             Sign In
             </a>
           </Typography>
         </form>
       </Card>
+    </div>
+    </div>
     </>
   );
 };
