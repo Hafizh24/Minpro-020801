@@ -25,6 +25,8 @@ const handleSubmit = async (data) => {
    
   export const LogIn = () => {
     return (
+      <>
+      <div className="flex justify-end items-end p-32"> 
       <Card color="transparent" shadow={false}>
         <Typography variant="h4" color="blue-gray">
           Sign In
@@ -32,9 +34,9 @@ const handleSubmit = async (data) => {
         <Typography color="gray" className="mt-1 font-normal">
           Enter your Karcis account
         </Typography>
-        <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96 lg:mt-40">
+        <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96 lg:mt-10">
           <div className="mb-4 flex flex-col gap-6">
-            <Input size="lg" label="Email or Username" />
+            <Input size="lg" label="Enter your email here dumbass" />
             <Input type="password" size="lg" label="Password" />
           </div>
          
@@ -58,11 +60,13 @@ const handleSubmit = async (data) => {
           </div>
           <Typography color="gray" className="mt-4 text-center font-normal">
             Don't have an account? {" "}
-            <a href="#" className="font-medium text-gray-900">
+            <a href="/signup" className="font-medium hover:text-gray-900">
               Sign Up
             </a>
           </Typography>
         </form>
       </Card>
+      </div>
+      </>
     );
   }
