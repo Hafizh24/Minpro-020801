@@ -6,17 +6,20 @@ import {
   Typography,
   Avatar,
 } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
 
 export function EventsCard(props) {
   const { children } = props;
-  return <Card className=" mt-16 w-1/5">{children}</Card>;
+  return <Card className=" mt-16 mx-3">{children}</Card>;
 }
 
 const Header = (props) => {
-  const { image } = props;
+  const { image, id } = props;
   return (
     <CardHeader color="blue-gray" className="relative rounded-sm">
-      <img src={image} alt="" />
+      <Link to={`/event/${id}`}>
+        <img src={image} alt="" />
+      </Link>
     </CardHeader>
   );
 };

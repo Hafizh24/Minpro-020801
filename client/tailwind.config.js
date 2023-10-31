@@ -7,6 +7,9 @@ module.exports = withMT({
       roboto: ["Roboto", "sans-serif"],
     },
     extend: {
+      backgroundImage: {
+        "event-background": "url('../src/assets/banner-event.jpg')",
+      },
       colors: {
         primary: {
           500: "#E2DDD7",

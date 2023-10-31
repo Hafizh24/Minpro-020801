@@ -1,13 +1,9 @@
-import {
-    Card,
-    Input,
-    Checkbox,
-    Button,
-    Typography,
-  } from "@material-tailwind/react";
-import { Formik, form, ErrorMessage, Field } from "formik";
+import React, { useState } from "react";
+import { useFormik } from "formik";
+import { Card, Input, Checkbox, Button, Typography } from "@material-tailwind/react";
 import * as Yup from "yup";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const RegisterSchema = Yup.object().shape({
   email: Yup.string().required("Email is required").email("Invalid email format"),
@@ -49,11 +45,9 @@ const handleSubmit = async (data) => {
               <Typography
                 variant="small"
                 color="gray"
-                className="flex items-center font-normal"
-              >
+                className="flex items-center font-normal">
                 remember me
               </Typography>
-              
             }
             containerProps={{ className: "-ml-2.5" }}
           />
