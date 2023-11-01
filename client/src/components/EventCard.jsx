@@ -1,25 +1,56 @@
 import React from "react";
-import { Card, CardHeader, CardBody, CardFooter, Input } from "@material-tailwind/react";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Input,
+} from "@material-tailwind/react";
 import ButtonEvent from "./ButtonEvent";
 
-const EventCard = () => {
+const EventCard = ({ formik }) => {
   return (
     <>
-      <Card className="w-full max-w-[46rem] shadow-lg mt-10">
+      <Card className="w-full max-w-[46rem] shadow-lg laptop:mt-10">
         <CardHeader
           floated={false}
           shadow={false}
           color="transparent"
-          className=" rounded-md m-0 bg-event-background bg-cover bg-center h-80">
-          <div className="flex flex-col pt-44 gap-y-1">
-            <h1 className=" text-white text-center text-2xl">Upload Images/posters/banner</h1>
-            <h6 className=" text-white text-center text-sm">
-              Recommended 724 x 340px and no more than 2Mb
-            </h6>
+          className=" m-0 h-52 rounded-sm bg-event-background bg-cover laptop:h-80 laptop:rounded-md laptop:bg-center"
+        >
+          <div className="flex flex-col items-center gap-y-4 pt-10 laptop:pt-32">
+            <div className="flex h-14 w-14 items-center justify-center rounded-full border-2">
+              <label htmlFor="dropzone-file" className=" cursor-pointer">
+                <div className="flex flex-col items-center justify-center pb-5 pt-5 text-white">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="h-10 w-10"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z"
+                    />
+                  </svg>
+                </div>
+                <input id="dropzone-file" type="file" className="hidden" />
+              </label>
+            </div>
+            <h1 className=" text-center text-lg text-white laptop:text-2xl">
+              Upload Images/posters/banner
+            </h1>
           </div>
         </CardHeader>
         <CardBody>
           <Input
+            name="eventName"
+            value={formik.values.eventName}
+            onChange={formik.handleChange}
+            required={true}
             type="text"
             placeholder="Event Name"
             variant="standard"
@@ -29,44 +60,35 @@ const EventCard = () => {
             }}
             containerProps={{ className: "min-w-[100px]" }}
           />
-
-          {/* <Select
-            variant="standard"
-            name="selectField"
-            id="selectField"
-            label="Select Category"
-            labelProps={{ className: "" }}>
-            <Option sele>Select Category</Option>
-            <Option>Concert</Option>
-            <Option>Seminars</Option>
-            <Option>Workshops</Option>
-            <Option>Festivals</Option>
-          </Select> */}
-
           <select
+            name="category"
+            value={formik.values.category}
+            onChange={formik.handleChange}
             defaultValue="default"
-            className="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+            className="peer block w-full appearance-none border-0 border-b-2 border-gray-200 bg-transparent px-0 py-2.5 text-sm text-gray-500 focus:border-gray-200 focus:outline-none focus:ring-0 dark:border-gray-700 dark:text-gray-400"
+          >
             <option value="default">Select Category</option>
             <option value="Concert">Concert</option>
             <option value="Seminars">Seminars</option>
-            <option value="FWorkshopsR">Workshops</option>
+            <option value="Workshop">Workshops</option>
             <option value="Festivals">Festivals</option>
           </select>
         </CardBody>
         <CardFooter className="pt-3">
-          <div className="flex gap-x-28 justify-start">
+          <div className="flex justify-start gap-x-28">
             <div>
               <h1>Hosted by</h1>
-              <div className="flex items-center justify-center w-14 h-14 rounded-full border mt-2">
+              <div className="mt-2 flex h-14 w-14 items-center justify-center rounded-full border">
                 <label htmlFor="dropzone-file" className=" cursor-pointer">
-                  <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                  <div className="flex flex-col items-center justify-center pb-6 pt-5 text-gray-800">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
                       strokeWidth={1.5}
                       stroke="currentColor"
-                      className="w-8 h-8">
+                      className="h-8 w-8"
+                    >
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -82,6 +104,15 @@ const EventCard = () => {
               <h1>Date & Time</h1>
               <ButtonEvent
                 title={"Select Date"}
+                formik={formik}
+                header={"event date"}
+                type={"date"}
+                value1={formik.values.eventStartDate}
+                value2={formik.values.eventEndDate}
+                name1="eventStartDate"
+                name2="eventEndDate"
+                label1={"Start Date"}
+                label2={"End Date"}
                 icon={
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -89,7 +120,8 @@ const EventCard = () => {
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-6 h-6">
+                    className="h-6 w-6"
+                  >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -99,7 +131,16 @@ const EventCard = () => {
                 }
               />
               <ButtonEvent
+                formik={formik}
                 title={"Select Time"}
+                header={"event time"}
+                type={"time"}
+                value1={formik.values.eventStartTime}
+                value2={formik.values.eventEndTime}
+                name1="eventStartTime"
+                name2="eventEndTime"
+                label1={"Start Time"}
+                label2={"End Time"}
                 icon={
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -107,7 +148,8 @@ const EventCard = () => {
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-6 h-6">
+                    className="h-6 w-6"
+                  >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -119,8 +161,18 @@ const EventCard = () => {
             </div>
             <div className="flex flex-col">
               <h1>Location</h1>
+
               <ButtonEvent
+                formik={formik}
                 title={"Select Location"}
+                header={"event location"}
+                type={"text"}
+                value1={formik.values.venue}
+                value2={formik.values.city}
+                name1="venue"
+                name2="city"
+                label1={"Place Name"}
+                label2={"City"}
                 icon={
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -128,7 +180,8 @@ const EventCard = () => {
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-6 h-6">
+                    className="h-6 w-6"
+                  >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
