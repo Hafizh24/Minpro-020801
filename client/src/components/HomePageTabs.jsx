@@ -1,6 +1,6 @@
 import React from "react";
 
-const Tabs = ({ location, setLocation }) => {
+const HomePageTabs = ({ location, setLocation }) => {
   const handleClick = (data) => {
     setLocation(data);
   };
@@ -35,4 +35,4 @@ const Tabs = ({ location, setLocation }) => {
   );
 };
 
-export default Tabs;
+export default HomePageTabs;

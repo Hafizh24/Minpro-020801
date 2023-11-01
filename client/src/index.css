@@ -5,3 +5,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;700;900&display=swap");
 
 @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap");
+
+.swiper-button-next {
+  --swiper-theme-color: black;
+}
+.swiper-button-prev {
+  --swiper-theme-color: black;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
