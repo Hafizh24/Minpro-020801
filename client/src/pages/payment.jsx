@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import  axios  from "axios";
+import axios from "axios";
 import {
   Card,
   CardHeader,
@@ -8,13 +8,18 @@ import {
   Typography,
   Button,
 } from "@material-tailwind/react";
+import { InputWithButton } from "../components/Reedem";
+import { useSelector } from "react-redux";
 
 const PaymentPage = () => {
   const [paymentMethod, setPaymentMethod] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
-  const [data, setData] = useState({})
+  const [data, setData] = useState({});
+  const totalPrice = useSelector((state) => state.transaction.data);
+  
+
 
   const fetchApi = async () => {
     try {
@@ -25,12 +30,14 @@ const PaymentPage = () => {
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   useEffect(() => {
-    fetchApi()
-  },[])
+    fetchApi();
+    
+  }, []);
 
+  // console.log(totalPrice);
   const handlePaymentMethodChange = (method) => {
     setPaymentMethod(method);
   };
@@ -48,7 +55,7 @@ const PaymentPage = () => {
   };
 
   return (
-    <div class="grid gap-4 grid-cols-2">
+    <div class="flex justify-center gap-4">
       <div>
         <h2 className="text-2xl font-bold mb-2 text-gray-800 p-4">
           Detail Pemesanan
@@ -60,55 +67,54 @@ const PaymentPage = () => {
               alt="card-image"
               className="h-full w-full object-cover"
             />
-        
           </div>
           <div className="w-1/2 p-4">
             <Typography color="blue-gray" className="font-medium">
-              detail tiket: 
+              detail tiket:
             </Typography>
           </div>
         </div>
         <div className="p-4">
-          <div className="mb-2 flex items-center justify-between">
+          <div className="mb-2 flex  justify-between">
             <div className="flex flex-col">
-            <Typography color="blue-gray" className="font-medium">
-              Tiket konser
-            </Typography>
-            <Typography
-              variant="small"
-              color="gray"
-              className="font-normal opacity-75"
-            >
-              ini tiket konser
-            </Typography>
+              <Typography color="blue-gray" className="font-medium">
+                Tiket konser
+              </Typography>
+              <Typography
+                variant="small"
+                color="gray"
+                className="font-normal opacity-75"
+              >
+                ini tiket konser
+              </Typography>
             </div>
             <div className="flex flex-col">
-            <Typography color="blue-gray" className="font-medium">
-              Harga
-            </Typography>
-            <Typography
-              variant="small"
-              color="gray"
-              className="font-normal opacity-75 text-center"
-            >
-             {data.price}
-            </Typography>
+              <Typography color="blue-gray" className="font-medium">
+                Harga
+              </Typography>
+              <Typography
+                variant="small"
+                color="gray"
+                className="font-normal opacity-75 text-center"
+              >
+                (harga)
+              </Typography>
             </div>
             <div className="flex flex-col">
-            <Typography color="blue-gray" className="font-medium">
-              Jumlah
-            </Typography>
-            <Typography
-              variant="small"
-              color="gray"
-              className="font-normal opacity-75"
-            >
-              1
-            </Typography>
+              <Typography color="blue-gray" className="font-medium">
+                Jumlah
+              </Typography>
+              <Typography
+                variant="small"
+                color="gray"
+                className="font-normal opacity-75"
+              >
+                1
+              </Typography>
             </div>
           </div>
         </div>
-        <div className="items-center h-100 justify-center bg-gray-100">
+        <div className="items-center justify-center bg-gray-100">
           <div className="p-4 bg-white rounded shadow-md">
             <div className="space-y-2">
               <div>
@@ -140,57 +146,55 @@ const PaymentPage = () => {
             </div>
           </div>
         </div>
-      </div>
-      <div>
-        <label className="text-gray-700">Metode Pembayaran:</label>
-        <div className="flex space-x-2 mt-1">
-          <button
-            onClick={() => handlePaymentMethodChange("creditCard")}
-            className={`py-2 px-4 rounded ${
-              paymentMethod === "creditCard"
-                ? "bg-gray-600 text-white"
-                : "bg-white text-gray-600 border border-gray-600"
-            }`}
-          >
-            Kartu Kredit
-          </button>
-          <button
-            onClick={() => handlePaymentMethodChange("bankTransfer")}
-            className={`py-2 px-4 rounded ${
-              paymentMethod === "bankTransfer"
-                ? "bg-gray-600 text-white"
-                : "bg-white text-gray-600 border border-gray-600"
-            }`}
-          >
-            Transfer Bank
-          </button>
-          <button
-            onClick={() => handlePaymentMethodChange("digitalWallet")}
-            className={`py-2 px-4 rounded ${
-              paymentMethod === "digitalWallet"
-                ? "bg-gray-600 text-white"
-                : "bg-white text-gray-600 border border-gray-600"
-            }`}
-          >
-            Dompet Digital
-          </button>
-          <button
-            onClick={() => handlePaymentMethodChange("cod")}
-            className={`py-2 px-4 rounded ${
-              paymentMethod === "cod"
-                ? "bg-gray-600 text-white"
-                : "bg-white text-gray-600 border border-gray-600"
-            }`}
-          >
-            Bayar di Tempat
-          </button>
-        </div>
         <div>
-          <button className="w-full py-2 px-4 bg-gray-600 text-white rounded hover:bg-blue-700 mt-4">
-            Bayar
-          </button>
+          <label className="text-gray-700">Metode Pembayaran:</label>
+          <div className="flex space-x-2 mt-1">
+            <button
+              onClick={() => handlePaymentMethodChange("digitalWallet")}
+              className={`py-2 px-4 rounded ${
+                paymentMethod === "digitalWallet"
+                  ? "bg-gray-600 text-white"
+                  : "bg-white text-gray-600 border border-gray-600"
+              }`}
+            >
+              Dompet Digital
+            </button>
+            <button
+              onClick={() => handlePaymentMethodChange("cod")}
+              className={`py-2 px-4 rounded ${
+                paymentMethod === "cod"
+                  ? "bg-gray-600 text-white"
+                  : "bg-white text-gray-600 border border-gray-600"
+              }`}
+            >
+              Bayar di Tempat
+            </button>
+          </div>
         </div>
       </div>
+      <div className="flex flex-col p-4 gap-5 w-96">
+        <div>
+          <InputWithButton />
+        </div>
+
+        <div>
+         <Typography> Detail Harga </Typography>
+         <div className="flex justify-between">
+         <Typography className="text-lg text-gray-500"> Total Harga Tiket</Typography>
+         <Typography className="text-lg text-gray-500">{totalPrice}</Typography>
+         </div>
+         <div className="flex justify-between">
+         <Typography> Total Bayar</Typography>
+         <Typography>total</Typography>
+         </div>
+          </div>
+          <div>
+          <Button className="px-4 py-2 text-white bg-gray-500 rounded hover:bg-blue-600 focus:outline-none">
+            Bayar sekarang
+          </Button>
+          </div>
+      </div>
+
     </div>
   );
 };

@@ -5,6 +5,7 @@ import DiscoveryPage from "./pages/DiscoveryPage";
 import { Register } from "./components/register";
 import { LogIn } from "./components/login";
 import PaymentPage from "./pages/payment";
+import AddToCart from "./pages/jumlahTiket";
 
 const router = createBrowserRouter([
   {
@@ -18,7 +19,10 @@ const router = createBrowserRouter([
   {
     path: "/payment",
     element: <PaymentPage />
-  }
+  },
+  { path: "/tiket",
+element: <AddToCart/> 
+}
 ]);
 
 function App() {
