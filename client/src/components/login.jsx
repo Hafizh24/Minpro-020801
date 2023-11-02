@@ -1,26 +1,28 @@
-import {
-    Card,
-    Input,
-    Checkbox,
-    Button,
-    Typography,
-  } from "@material-tailwind/react";
-import { Formik, form, ErrorMessage, Field } from "formik";
+import React, { useState } from "react";
+import { useFormik } from "formik";
+import { Card, Input, Checkbox, Button, Typography } from "@material-tailwind/react";
 import * as Yup from "yup";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const RegisterSchema = Yup.object().shape({
-  username: Yup.string().required("Username is required"),
   email: Yup.string().required("Email is required").email("Invalid email format"),
   password: Yup.string().min(8, "Minimum 8 characters")
 });
 
-
-
+const handleSubmit = async (data) => {
+    try {
+      await axios.post("http://localhost:2000/users", data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
    
   export const LogIn = () => {
     return (
+      <>
+      <div className="flex justify-end items-end p-32"> 
       <Card color="transparent" shadow={false}>
         <Typography variant="h4" color="blue-gray">
           Sign In
@@ -28,9 +30,9 @@ const RegisterSchema = Yup.object().shape({
         <Typography color="gray" className="mt-1 font-normal">
           Enter your Karcis account
         </Typography>
-        <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
+        <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96 lg:mt-10">
           <div className="mb-4 flex flex-col gap-6">
-            <Input size="lg" label="Email or Username" />
+            <Input size="lg" label="Enter your email here dumbass" />
             <Input type="password" size="lg" label="Password" />
           </div>
          
@@ -43,22 +45,22 @@ const RegisterSchema = Yup.object().shape({
               <Typography
                 variant="small"
                 color="gray"
-                className="flex items-center font-normal"
-              >
+                className="flex items-center font-normal">
                 remember me
               </Typography>
-              
             }
             containerProps={{ className: "-ml-2.5" }}
           />
           </div>
           <Typography color="gray" className="mt-4 text-center font-normal">
             Don't have an account? {" "}
-            <a href="#" className="font-medium text-gray-900">
+            <a href="/signup" className="font-medium hover:text-gray-900">
               Sign Up
             </a>
           </Typography>
         </form>
       </Card>
+      </div>
+      </>
     );
   }
