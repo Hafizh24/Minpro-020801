@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 
 export function EventsCard(props) {
   const { children } = props;
-  return <Card className=" mt-16 mx-3">{children}</Card>;
+  return <Card className=" mx-3 mt-16">{children}</Card>;
 }
 
 const Header = (props) => {
@@ -28,11 +28,11 @@ const Body = (props) => {
   const { name, price, date } = props;
   return (
     <CardBody className="mb-10">
-      <Typography className="font-sans tracking-widest  text-blue-gray-900 font-semibold">
+      <Typography className="font-sans font-semibold  tracking-widest text-blue-gray-900">
         {name}
       </Typography>
-      <Typography className="font-sans text-sm mb-4">{date}</Typography>
-      <Typography className="font-sans text-sm text-blue-gray-900 font-semibold">
+      <Typography className="mb-4 font-sans text-sm">{date}</Typography>
+      <Typography className="font-sans text-sm font-semibold text-blue-gray-900">
         {price}
       </Typography>
     </CardBody>
@@ -41,9 +41,15 @@ const Body = (props) => {
 
 const Footer = () => {
   return (
-    <CardFooter className="pt-4 border-t">
+    <CardFooter className="border-t pt-4">
       <button className="flex items-center">
-        <Avatar alt="" size="sm" className=" bg-blue-gray-200 mr-2" />
+        {/* <Avatar alt="" size="sm" className=" bg-blue-gray-200 mr-2" /> */}
+        <Avatar
+          alt=""
+          size="sm"
+          src="https://source.unsplash.com/random/900×700/?people&1"
+          className="mr-2"
+        />
         EO name
       </button>
     </CardFooter>

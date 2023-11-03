@@ -30,7 +30,7 @@ export const LogIn = () => {
   const [user, setUser] = useState([]);
   const navigate = useNavigate();
 
-  const handleSubmit = async (data) => {
+const handleSubmit = async (data) => {
     try {
       console.log(data);
       if (data.input_data.includes("@")) {

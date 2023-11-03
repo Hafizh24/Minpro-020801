@@ -85,6 +85,7 @@ export const Register = () => {
       email: "",
       username: "",
       password: "",
+      // referral: referralCodeGenerator()
     },
     validationSchema: RegisterSchema,
     onSubmit: (values, action) => {
