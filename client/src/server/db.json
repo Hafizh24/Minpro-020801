@@ -130,7 +130,6 @@
       "password": "password",
       "id": 1
     },
-
     {
       "name": "riri",
       "email": "riri@emai",
@@ -142,6 +141,224 @@
       "email": "mamang@racing.com",
       "password": "password",
       "id": 3
+    },
+    {
+      "name": "ditto",
+      "email": "ditto@ditto.com",
+      "password": "123456789",
+      "id": 4
+    },
+    {
+      "name": "roni sumarni",
+      "username": "ronironi",
+      "email": "roni@gmail.com",
+      "password": "12345678",
+      "bio": "Hey there! I'm using twitter.",
+      "followers_list": [
+        "Mark Zuckeberg",
+        "Joe Biden"
+      ],
+      "following_list": [
+        "Mark Zuckeberg"
+      ],
+      "referral": "RS0FX0",
+      "id": 5
+    },
+    {
+      "name": "tini tini",
+      "username": "tinitini",
+      "email": "tini@tini.com",
+      "password": "12345678",
+      "bio": "Hey there! I'm using twitter.",
+      "followers_list": [
+        "Mark Zuckeberg",
+        "Joe Biden"
+      ],
+      "following_list": [
+        "Mark Zuckeberg"
+      ],
+      "referral": "TTBCRS",
+      "id": 6
+    },
+    {
+      "name": "george bush",
+      "email": "gbush@gmail.com",
+      "password": "12345678",
+      "referral": "",
+      "id": 7
+    },
+    {
+      "name": "George Bush",
+      "email": "george@gmail.com",
+      "password": "12345678",
+      "referral": "",
+      "id": 8
+    },
+    {
+      "name": "valak resing",
+      "email": "valak@resing.com",
+      "password": "12345678",
+      "referral": "GBCCV5",
+      "id": 9
+    },
+    {
+      "name": "ditto resing",
+      "email": "ditto@gmail.com",
+      "password": "123456789",
+      "referral": "DRM05L",
+      "id": 10
+    },
+    {
+      "name": "Daffa Alyaa",
+      "email": "daffalyaa@gmail.com",
+      "username": "daffalyaa",
+      "password": "123456789",
+      "referral": "DA6L2H",
+      "id": 11
+    },
+    {
+      "name": "shohei ohtani",
+      "email": "shoheiohtani@gmail.com",
+      "username": "shobae1",
+      "password": "12345678",
+      "referral": "SOUEVF",
+      "id": 12
+    },
+    {
+      "name": "Ezra Ravin",
+      "email": "ezraravin@gmail.com",
+      "username": "ezraaaa",
+      "password": "12345678",
+      "referral": "ER39FG",
+      "id": 13
+    },
+    {
+      "name": "Aman Hidayatulloh",
+      "email": "aman@gmail.com",
+      "username": "amanyogaforever",
+      "password": "12345678",
+      "referral": "AHQQ3Y",
+      "id": 14
+    },
+    {
+      "name": "luthfi naon",
+      "email": "udahmaslutfi@gmail.com",
+      "username": "lutfinaon",
+      "password": "12345678",
+      "referral": "LNU01U",
+      "id": 15
+    },
+    {
+      "name": "Andre Postman",
+      "email": "andre@postman.com",
+      "username": "andreee",
+      "password": "123456789",
+      "referral": "AP5AMX",
+      "id": 16
+    },
+    {
+      "name": "dadang konelo",
+      "email": "dadang1@gmail.com",
+      "username": "dadang1",
+      "password": "12345678",
+      "referral": "DK96HF",
+      "id": 17
+    },
+    {
+      "name": "shinji ikari",
+      "email": "shinji@shinji.com",
+      "username": "shinjikari",
+      "password": "12345678",
+      "referral": "SIYHNA",
+      "id": 18
+    },
+    {
+      "name": "dinar candy",
+      "email": "candy@gmail.com",
+      "username": "dinarcandy",
+      "password": "12345678",
+      "referral": "DCICWA",
+      "id": 19
+    },
+    {
+      "name": "Doa Ibu",
+      "email": "doaibu@gmail.com",
+      "username": "doabunda",
+      "password": "12345678",
+      "referral": "DIAN33",
+      "id": 20
+    },
+    {
+      "name": "Agna Bootstrap",
+      "email": "user1@gmail.com",
+      "username": "bbbbbbb",
+      "password": "12345678",
+      "referral": "ABX4Q1",
+      "id": 21
+    },
+    {
+      "name": "hhhhhh",
+      "email": "hhhh@gmail.com",
+      "username": "h1h1h1h1",
+      "password": "12345678",
+      "referral": "HUNFB",
+      "id": 22
+    },
+    {
+      "name": "wwwqewe",
+      "email": "sadfas@dsf.com",
+      "username": "1fdsjhs",
+      "password": "12345678",
+      "referral": "W4BRL",
+      "id": 23
+    },
+    {
+      "name": "dsgfaesb",
+      "email": "sdfs@gmail.com",
+      "username": "sdgfdthdfg",
+      "password": "12345678",
+      "referral": "DL5FS",
+      "id": 24
+    },
+    {
+      "name": "Test1",
+      "email": "test1@gmail.com",
+      "username": "test1",
+      "password": "12345678",
+      "referral": "TQQG4",
+      "id": 25
+    },
+    {
+      "name": "dscsdcas",
+      "email": "sdvvdsdf@gmail.com",
+      "username": "egrdsdgsd",
+      "password": "sfsdhfgjfg",
+      "referral": "DLT1V",
+      "id": 26
+    },
+    {
+      "name": "asfsfas",
+      "email": "dgsdrse@sdgf.com",
+      "username": "grdhytt",
+      "password": "dfbsfhxfhdf",
+      "referral": "A5WLS",
+      "id": 27
+    },
+    {
+      "name": "prabowo subianto",
+      "email": "prabowosubianto@gmail.com",
+      "username": "prabuWu",
+      "password": "12345678",
+      "referral": "PSVRUZ",
+      "id": 28
+    },
+    {
+      "name": "ioioio",
+      "email": "ioioio@gmail.com",
+      "username": "ioioio",
+      "password": "123456789",
+      "referral": "I34VK",
+      "id": 29
     }
   ]
 }
