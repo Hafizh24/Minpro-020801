@@ -18,72 +18,63 @@ const EventCard = ({ formik }) => {
     const file = e.target.files[0];
     const pic = URL.createObjectURL(file);
     console.log(pic);
+    console.log(typeof pic);
     setPicture(pic);
+    formik.setFieldValue("dropzoneFile", pic);
 
     // formik.setFieldValue("dropzoneFile", e.target.files[0]);
   };
   return (
     <>
       <Card className="w-full max-w-[46rem] shadow-lg laptop:mt-10">
-        {!picture ? (
-          <CardHeader
-            floated={false}
-            shadow={false}
-            color="transparent"
-            className=" m-0 h-52 rounded-sm bg-event-background bg-cover laptop:h-80 laptop:rounded-md laptop:bg-center"
-          >
-            <div className="flex flex-col items-center gap-y-4 pt-10 laptop:pt-32">
-              <div className="flex h-14 w-14 items-center justify-center rounded-full border-2">
-                <label htmlFor="dropzone-file" className=" cursor-pointer">
-                  <div className="flex flex-col items-center justify-center pb-5 pt-5 text-white">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={1.5}
-                      stroke="currentColor"
-                      className="h-10 w-10"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z"
-                      />
-                    </svg>
-                  </div>
-                  <input
-                    id="dropzone-file"
-                    name="dropzoneFile"
-                    type="file"
-                    accept=".jpg,.jpeg,.png"
-                    className="hidden"
-                    onChange={handleChangeImage}
-                  />
-                </label>
-              </div>
-              <h1 className=" text-center text-lg text-white laptop:text-2xl">
-                Upload Images/posters/banner
-              </h1>
+        <CardHeader
+          floated={false}
+          shadow={false}
+          color="transparent"
+          className=" m-0 h-52 rounded-sm bg-event-background bg-cover laptop:h-80 laptop:rounded-md laptop:bg-center"
+        >
+          <div className="flex flex-col items-center gap-y-4 pt-10 laptop:pt-32">
+            <div className="flex h-14 w-14 items-center justify-center rounded-full border-2">
+              <label htmlFor="dropzone-file" className=" cursor-pointer">
+                <div className="flex flex-col items-center justify-center pb-5 pt-5 text-white">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="h-10 w-10"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z"
+                    />
+                  </svg>
+                </div>
+                <input
+                  id="dropzone-file"
+                  name="dropzoneFile"
+                  type="file"
+                  accept=".jpg,.jpeg,.png"
+                  className="hidden"
+                  onChange={handleChangeImage}
+                />
+              </label>
             </div>
-            <div>
-              {formik.errors.dropzoneFile ? (
-                <p className=" text-center text-red-900">
-                  {formik.errors.dropzoneFile}
-                </p>
-              ) : null}
-            </div>
-            <br />
-          </CardHeader>
-        ) : (
-          <CardHeader
-            floated={false}
-            shadow={false}
-            color="transparent"
-            className=" m-0 h-52 rounded-sm bg-event-background bg-cover laptop:h-80 laptop:rounded-md laptop:bg-center"
-          >
-            <img src={picture} alt="" />
-          </CardHeader>
-        )}
+            <h1 className=" text-center text-lg text-white laptop:text-2xl">
+              Upload Images/posters/banner
+            </h1>
+          </div>
+          <div>
+            {formik.errors.dropzoneFile ? (
+              <p className=" text-center text-red-900">
+                {formik.errors.dropzoneFile}
+              </p>
+            ) : null}
+          </div>
+          <br />
+        </CardHeader>
 
         <CardBody>
           <Input

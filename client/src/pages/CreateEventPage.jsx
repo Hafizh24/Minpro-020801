@@ -5,6 +5,7 @@ import SimpleNavbar from "../components/SimpleNavbar";
 import { Button } from "@material-tailwind/react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import axios from "axios";
 
 const ValidationSchema = Yup.object({
   eventName: Yup.string().required("Event Name is required"),
@@ -20,19 +21,30 @@ const ValidationSchema = Yup.object({
   eventEndTime: Yup.string().required("End Time is required"),
   venue: Yup.string().required("Place name is required"),
   city: Yup.string().required("City is required"),
-  dropzoneFile: Yup.mixed().test(
-    "fileSize",
-    "File size must be less than 3MB",
-    (value) => {
-      if (value) {
-        return value.size <= 3145728;
-      }
-      return true;
-    },
-  ),
+  // dropzoneFile: Yup.mixed().test(
+  //   "fileSize",
+  //   "File size must be less than 3MB",
+  //   (value) => {
+  //     if (value) {
+  //       return value.size <= 3145728;
+  //     }
+  //     return true;
+  //   },
+  // ),
 });
 
 const CreateEventPage = () => {
+  const handleSubmit = async (data) => {
+    try {
+      console.log(data);
+      await axios.post("http://localhost:2000/events", data);
+      console.log("success upload");
+      alert("success upload");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const formik = useFormik({
     initialValues: {
       eventName: "",
@@ -53,7 +65,11 @@ const CreateEventPage = () => {
     },
     validationSchema: ValidationSchema,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      console.log(values);
+      console.log(values.dropzoneFile);
+      // alert(JSON.stringify(values, null, 2));
+      handleSubmit(values);
+      window.location.reload();
     },
   });
 
