@@ -40,8 +40,8 @@ const AddToCart = () => {
   }, []);
 
   return (
-    <div className="flex justify-center gap-5 p-4">
-      <div className="flex flex-col gap-4">
+    <div className="flex flex-col items-center gap-2 px-4 py-4 laptop:flex-row justify-center">
+      <div className="flex flex-col p-2 gap-4">
         {data.map((item) => (
           <TicketsCard key={item.id}>
             <TicketsCard.Body name={item.name} />
@@ -52,8 +52,8 @@ const AddToCart = () => {
           </TicketsCard>
         ))}
       </div>
-      <div>
-        <Card className="w-96">
+      <div className="gap-2 px-4 py-2">
+        <Card className="border-solid border-2 border-gray-300  w-80">
           <CardBody>
             <Typography color="blue-gray" className="font-medium">
               Harap Memilih Tiket Terlebih Dahulu

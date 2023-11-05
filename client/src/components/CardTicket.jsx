@@ -10,7 +10,7 @@ import { useState } from "react";
 export function TicketsCard(props) {
   const { children } = props;
   return (
-    <Card className="border-solid border-2 border-gray-500 w-96">
+    <Card className="border-solid border-2 border-gray-500 w-80">
       {children}
     </Card>
   );
