@@ -15,6 +15,13 @@ export function EventTabs({ formik }) {
   const [isPaid, setIspaid] = useState(true);
   const [isPromotion, setIsPromotion] = useState(true);
 
+  // const handleChange = (e) => {
+  //   setIspaid(e.target.checked);
+  //   if (!isPaid) {
+  //     formik.setFieldValue("ticketPrice", 0);
+  //   }
+  // };
+
   return (
     <Tabs value={activeTab} className="mt-16">
       <TabsHeader
@@ -47,23 +54,31 @@ export function EventTabs({ formik }) {
             <Input
               variant="static"
               label="Ticket Name"
-              required={true}
               name="ticketName"
               value={formik.values.ticketName}
               onChange={formik.handleChange}
             />
+
+            {formik.errors.ticketName && formik.touched.ticketName && (
+              <p className=" font-normal text-red-300">
+                {formik.errors.ticketName}
+              </p>
+            )}
 
             <Input
               variant="static"
               label="Number of Tickets"
               type="number"
               name="ticketQuantity"
-              required={true}
               value={formik.values.ticketQuantity}
               onChange={formik.handleChange}
-              min="0"
-              max="1000"
             />
+
+            {formik.errors.ticketQuantity && formik.touched.ticketQuantity && (
+              <p className=" font-normal text-red-300">
+                {formik.errors.ticketQuantity}
+              </p>
+            )}
 
             <div className="flex items-center justify-between">
               <span
@@ -81,7 +96,7 @@ export function EventTabs({ formik }) {
                 ripple={false}
               />
             </div>
-            {isPaid ? (
+            {isPaid && (
               <Input
                 variant="static"
                 label="Price"
@@ -89,10 +104,8 @@ export function EventTabs({ formik }) {
                 value={formik.values.ticketPrice}
                 onChange={formik.handleChange}
                 type="number"
-                min="10000"
-                max="10000000"
               />
-            ) : null}
+            )}
 
             <div className=" flex items-center justify-between">
               <span className="font-normal tracking-wide text-gray-800 antialiased">
