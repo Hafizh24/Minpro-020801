@@ -9,7 +9,7 @@ import {
 } from "@material-tailwind/react";
 import * as Yup from "yup";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const ValidationSchema = Yup.object({
   // email: Yup.string()
   //   .required("Email is required")
@@ -17,46 +17,51 @@ const ValidationSchema = Yup.object({
   password: Yup.string().min(8, "Minimum 8 characters"),
 });
 
-// function validateInput(input) {
-//   // Check if the input contains an "@" symbol; if it does, it's likely an email address.
-//   if (input.includes('@')) {
-//     console.log('email');
-//   } else {
-//     console.log('username');
-//   }
-// }
+function validateInput(input) {
+  // Check if the input contains an "@" symbol; if it does, it's likely an email address.
+  if (input.includes("@")) {
+    console.log("email");
+  } else {
+    console.log("username");
+  }
+}
 
 export const LogIn = () => {
   const [user, setUser] = useState([]);
   const navigate = useNavigate();
 
-const handleSubmit = async (data) => {
+  const handleSubmit = async (data) => {
     try {
       console.log(data);
       if (data.input_data.includes("@")) {
         data.email = data.input_data;
         delete data.input_data;
         const response = await axios.get(
-          `http://localhost:2000/user/user-login?email=${data.email}&password=${data.password}`
+          `http://localhost:2000/users?email=${data.email}&password=${data.password}`
         );
+        setUser(response.data[0]);
+        localStorage.setItem("id", response.data[0]?.id);
+        navigate("/discovery");
+        window.location.reload();
+      } else {
+        data.username = data.input_data;
+        delete data.input_data;
+        const response = await axios.get(
+          `http://localhost:2000/users?username=${data.username}&password=${data.password}`
+        );
+        setUser(response.data[0]);
+        localStorage.setItem("id", response.data[0]?.id);
+        navigate("/discovery");
+        window.location.reload();
       }
-
-      const response = await axios.get(
-        `http://localhost:2000/users?email=${data.email}&password=${data.password}`
-      );
-      console.log(response.data[0]);
-      setUser(response.data[0]);
-      localStorage.setItem("id", response.data[0]?.id);
-      navigate("/discovery");
-      window.location.reload();
+      // console.log(response.data[0]);
     } catch (err) {
       console.log(err);
     }
   };
   const formik = useFormik({
     initialValues: {
-      email: "",
-      username: "",
+      input_data: "",
       password: "",
     },
     validationSchema: ValidationSchema,
@@ -91,15 +96,15 @@ const handleSubmit = async (data) => {
                   size="lg"
                   label="Email or Username"
                   name="input_data"
-                  value={formik.values.email}
+                  value={formik.values.input_data}
                   onChange={formik.handleChange}
-                  error={formik.touched.email && Boolean(formik.errors.email)}
+                  // error={formik.touched.email && Boolean(formik.errors.email)}
                 />
-                {formik.touched.email || formik.errors.email ? (
+                {/* {formik.touched.email || formik.errors.email ? (
                   <div className=" text-red-900 mt-[-20px]">
-                    {formik.errors.email}
-                  </div>
-                ) : null}
+                    {formik.errors.email} */}
+                {/* </div>
+                ) : null} */}
                 <Input
                   type="password"
                   size="lg"
@@ -118,7 +123,11 @@ const handleSubmit = async (data) => {
                 ) : null}
               </div>
 
-              <Button type="submit" className="mt-6 bg-orange-400 text-black text-sm" fullWidth >
+              <Button
+                type="submit"
+                className="mt-6 bg-orange-400 text-black text-sm"
+                fullWidth
+              >
                 Sign In
               </Button>
               <div>
@@ -137,7 +146,12 @@ const handleSubmit = async (data) => {
               </div>
               <Typography color="gray" className="mt-4 text-center font-normal">
                 Don't have an account?{" "}
-                  <a href="/signup" className="font-medium text-gray-900 hover:text-orange-400">Sign Up</a>
+                <a
+                  href="/signup"
+                  className="font-medium text-gray-900 hover:text-orange-400"
+                >
+                  Sign Up
+                </a>
               </Typography>
             </form>
           </Card>

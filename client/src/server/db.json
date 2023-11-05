@@ -350,7 +350,8 @@
       "username": "prabuWu",
       "password": "12345678",
       "referral": "PSVRUZ",
-      "id": 28
+      "id": 28,
+      "img": "https://upload.wikimedia.org/wikipedia/id/thumb/6/64/Prabowo.jpeg/220px-Prabowo.jpeg"
     },
     {
       "name": "ioioio",
@@ -358,7 +359,16 @@
       "username": "ioioio",
       "password": "123456789",
       "referral": "I34VK",
-      "id": 29
+      "id": 29,
+      "img": "https://upload.wikimedia.org/wikipedia/id/thumb/6/64/Prabowo.jpeg/220px-Prabowo.jpeg"
+    },
+    {
+      "name": "muhamad aman hidayat",
+      "email": "mamanhidayat@gmail.com",
+      "username": "yayat17",
+      "password": "12345678",
+      "referral": "MAH54UH",
+      "id": 30
     }
   ]
 }

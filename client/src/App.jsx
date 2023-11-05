@@ -13,6 +13,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import Required from "./components/required";
 import { Verification } from "./components/verifikasi";
+import  Profile  from "./pages/ProfilePage"
 
 const router = createBrowserRouter([
   {
@@ -25,9 +26,8 @@ const router = createBrowserRouter([
   { path: "/signup", element: <Register /> },
   { path: "/signin", element: <LogIn /> },
   { path: "/event/:id", element: <DetailEventPage /> },
-  {element: <Required></Required>, children: [
-    { path: "/profile", element: < ProfileCard />}
-  ] },
+  { path: "/profile", element: < Profile/> }
+  
 ]);
 
 function App() {

@@ -1,10 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import { FaUserLarge } from "react-icons/fa6";
+import { Menu, MenuHandler, MenuList, MenuItem, Button } from "@material-tailwind/react";
 
 const Navbar = () => {
-  const user = useSelector((state) => state.user.value)
+  const user = useSelector((state) => state.user.value);
+  const id = user.id;
+  console.log(user);
+  const checkUser = () => {
+    if (user) {
+      // console.log(user);
+      return true;
+    } else {
+      // console.log(user);
+      return false;
+    }
+  };
+  useEffect(() => {
+    checkUser();
+  });
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("id");
+    navigate("/");
+    window.location.reload();
+  };
   return (
     <nav className="bg-primary-500 pb-4 px-4 pt-4 flex justify-between items-center sticky">
       <div className="flex">
@@ -20,7 +42,8 @@ const Navbar = () => {
               viewBox="0 0 24 24"
               strokeWidth="1.5"
               stroke="currentColor"
-              className="w-5 h-5 fill-none">
+              className="w-5 h-5 fill-none"
+            >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -43,7 +66,8 @@ const Navbar = () => {
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
-                className="w-6 h-6 fill-none stroke-blue-gray-900">
+                className="w-6 h-6 fill-none stroke-blue-gray-900"
+              >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -54,13 +78,14 @@ const Navbar = () => {
             Create Events
           </button>
         </Link>
-        <Link to="/discovery">
+        <Link to="/">
           <button className="flex gap-x-1 text-base items-center text-blue-gray-900">
             <span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5 fill-blue-gray-900"
-                viewBox="0 0 512 512">
+                viewBox="0 0 512 512"
+              >
                 <path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm306.7 69.1L162.4 380.6c-19.4 7.5-38.5-11.6-31-31l55.5-144.3c3.3-8.5 9.9-15.1 18.4-18.4l144.3-55.5c19.4-7.5 38.5 11.6 31 31L325.1 306.7c-3.2 8.5-9.9 15.1-18.4 18.4zM288 256a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z" />
               </svg>
             </span>
@@ -69,16 +94,51 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="flex gap-x-6 mr-8">
-        <Link to="/signin">
-          <button className=" border py-2 px-4 rounded-full border-brown-200 text-blue-gray-900">
-            Sign In
-          </button>
-        </Link>
-        <Link to="/signup">
-          <button className=" border bg-brown-100 rounded-full py-2 px-4 border-brown-200 text-blue-gray-900">
-            Sign Up
-          </button>
-        </Link>
+        {!id ? (
+          <div>
+            <Link to="/signin">
+              <button
+                className={
+                  "inline border py-2 px-4 rounded-full border-brown-200 text-blue-gray-900"
+                }
+              >
+                Sign In
+              </button>
+            </Link>
+            <Link to="/signup">
+              <button
+                className={
+                  " border bg-brown-100 rounded-full py-2 px-4 border-brown-200 text-blue-gray-900"
+                }
+              >
+                Sign Up
+              </button>
+            </Link>
+          </div>
+        ) : ( 
+          // <Link to={"/discovery"}>
+            <Menu>
+              <MenuHandler>
+                <Button
+                // onClick={handleLogout}
+                // className={
+                // " border bg-brown-100 rounded-full py-2 px-4 border-brown-200 text-blue-gray-900"
+                //  }
+                >
+                  <FaUserLarge />
+                </Button>
+              </MenuHandler>
+              <MenuList>
+                <MenuItem> My Profile </MenuItem>
+                <MenuItem> Home </MenuItem>
+                <Link to={"/"}>
+                <MenuItem> Log Out </MenuItem>
+                </Link>
+
+              </MenuList>
+            </Menu>
+          // </Link>
+        )}
       </div>
     </nav>
   );
