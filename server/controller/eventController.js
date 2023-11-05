@@ -1,9 +1,6 @@
 const db = require("../models");
-
 const Event = db.Event;
 const Ticket = db.Ticket;
-
-const Creator = Event.belongsTo(Ticket);
 
 module.exports = {
   getAll: async (req, res) => {
@@ -55,6 +52,7 @@ module.exports = {
       ticketName,
       ticketQuantity,
       ticketPrice,
+      dropzoneFile,
     } = req.body;
     try {
       const event = await Event.create({
@@ -62,6 +60,7 @@ module.exports = {
         desciption: desciption,
         venue: venue,
         city: city,
+        image_url: dropzoneFile,
         start_date: eventStartDate,
         end_date: eventEndDate,
         start_time: eventStartTime,
