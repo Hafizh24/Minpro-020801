@@ -51,7 +51,7 @@ export const LogIn = () => {
         );
         setUser(response.data[0]);
         localStorage.setItem("id", response.data[0]?.id);
-        navigate("/discovery");
+        navigate("/");
         window.location.reload();
       }
       // console.log(response.data[0]);

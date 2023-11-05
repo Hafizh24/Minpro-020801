@@ -129,10 +129,14 @@ const Navbar = () => {
                 </Button>
               </MenuHandler>
               <MenuList>
+                <Link to={"/profile"}>
                 <MenuItem> My Profile </MenuItem>
-                <MenuItem> Home </MenuItem>
+                </Link>
                 <Link to={"/"}>
-                <MenuItem> Log Out </MenuItem>
+                <MenuItem> Home </MenuItem>
+                </Link>
+                <Link to={"/"}>
+                <MenuItem onClick={handleLogout}> Log Out </MenuItem>
                 </Link>
 
               </MenuList>
