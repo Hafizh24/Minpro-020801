@@ -76,8 +76,7 @@ const EventCard = ({ formik }) => {
           </div>
           <br />
         </CardHeader>
-       
-          
+
         <CardBody>
           <Input
             name="eventName"
