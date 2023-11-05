@@ -18,6 +18,7 @@ const EventCard = ({ formik }) => {
     const file = e.target.files[0];
     const pic = URL.createObjectURL(file);
     console.log(pic);
+
     console.log(typeof pic);
     setPicture(pic);
     formik.setFieldValue("dropzoneFile", pic);
@@ -75,7 +76,8 @@ const EventCard = ({ formik }) => {
           </div>
           <br />
         </CardHeader>
-
+       
+          
         <CardBody>
           <Input
             name="eventName"
