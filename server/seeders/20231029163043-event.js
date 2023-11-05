@@ -3,21 +3,127 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-     */
     await queryInterface.bulkInsert("Events", [
       {
         name: "Festival Good",
-        description: "lroemdjsdjsjfds jdjsjdsj kaksaksaks",
-        location: "Bandung",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eget nunc lobortis mattis aliquam faucibus purus in massa tempor. Diam in arcu cursus euismod quis viverra nibh cras pulvinar. Pellentesque sit amet porttitor eget dolor morbi non arcu. Convallis a cras semper auctor neque vitae tempus.",
+        venue: "Braga",
+        city: "Bandung",
         image_url: "https://source.unsplash.com/random/900×700/?event&1",
+        start_date: "2023-11-08",
+        end_date: "2023-11-11",
+        start_time: "15:30",
+        end_time: "21:00",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "Jakarta Fair",
+        description: "",
+        venue: "Kemayoran",
+        city: "Jakarta",
+        image_url: "https://source.unsplash.com/random/900×700/?event&3",
+        start_date: "2023-11-11",
+        end_date: "2023-11-12",
+        start_time: "16:30",
+        end_time: "22:00",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "Sounds of Rock",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eget nunc lobortis mattis aliquam faucibus purus in massa tempor. Diam in arcu cursus euismod quis viverra nibh cras pulvinar. Pellentesque sit amet porttitor eget dolor morbi non arcu. Convallis a cras semper auctor neque vitae tempus.",
+        venue: "Arcadaz",
+        city: "Yogyakarta",
+        image_url: "",
+        start_date: "2023-11-18",
+        end_date: "2023-11-18",
+        start_time: "17:00",
+        end_time: "23:00",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "Indonesia Comic Fair",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Facilisi etiam dignissim diam quis enim lobortis. Et tortor at risus viverra adipiscing at in tellus. Viverra suspendisse potenti nullam ac tortor. Nunc id cursus metus aliquam eleifend. Et tortor consequat id porta nibh venenatis cras.",
+        venue: "Jakarta Convention Center",
+        city: "Jakarta",
+        image_url: "https://source.unsplash.com/random/900×700/?event&4",
+        start_date: "2023-11-12",
+        end_date: "2023-11-15",
+        start_time: "13:00",
+        end_time: "21:00",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "Welcome to Wonderland",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar elementum integer enim neque volutpat ac tincidunt vitae semper. Id ornare arcu odio ut sem. Risus commodo viverra maecenas accumsan lacus vel facilisis volutpat est. Etiam erat velit scelerisque in dictum non consectetur a erat. Ut consequat semper viverra nam libero justo laoreet sit amet. Semper auctor neque vitae tempus quam.",
+        venue: "Kemang",
+        city: "Jakarta",
+        image_url: "https://source.unsplash.com/random/900×700/?event&5",
+        start_date: "2023-11-22",
+        end_date: "2023-11-22",
+        start_time: "16:00",
+        end_time: "22:00",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "Saturday Night Live Music",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dignissim sodales ut eu sem integer vitae justo. Mauris pellentesque pulvinar pellentesque habitant morbi tristique.",
+        venue: "Dago",
+        city: "Bandung",
+        image_url: "https://source.unsplash.com/random/900×700/?event&6",
+        start_date: "2023-11-11",
+        end_date: "2023-11-11",
+        start_time: "19:00",
+        end_time: "22:00",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "MLBB Bandung Cup",
+        description: "",
+        venue: "Bandung Electronic Centre",
+        city: "Bandung",
+        image_url: "",
+        start_date: "2023-11-28",
+        end_date: "2023-11-28",
+        start_time: "11:00",
+        end_time: "19:00",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "Indie Festival",
+        description: "",
+        venue: "Std. Kridosono",
+        city: "Yogyakarta",
+        image_url: "https://source.unsplash.com/random/900×700/?event&7",
+        start_date: "2023-11-24",
+        end_date: "2023-11-26",
+        start_time: "17:00",
+        end_time: "23:00",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "Indie Festival",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vehicula ipsum a arcu cursus vitae. Sed vulputate mi sit amet mauris commodo quis imperdiet massa. Ut sem nulla pharetra diam sit amet nisl. Senectus et netus et malesuada. Sit amet facilisis magna etiam tempor orci eu lobortis. Odio ut enim blandit volutpat maecenas volutpat blandit. Praesent elementum facilisis leo vel. Facilisi morbi tempus iaculis urna.",
+        venue: "Universitas Sarjanawiyata Tamansiswa",
+        city: "Yogyakarta",
+        image_url: "",
+        start_date: "2023-11-24",
+        end_date: "2023-11-26",
+        start_time: "17:00",
+        end_time: "23:00",
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -25,12 +131,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
-    await queryInterface.bulkDelete("Users,", null, {});
+    await queryInterface.bulkDelete("Events,", null, {});
   },
 };
