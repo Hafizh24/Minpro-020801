@@ -1,15 +1,27 @@
-import { Avatar, Button, Card, CardBody, CardFooter } from "@material-tailwind/react";
+import {
+  Avatar,
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+} from "@material-tailwind/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import banner from "../assets/banner-event.jpg";
 
 const DetailEventPage = () => {
   const { id } = useParams();
   const [event, setEevent] = useState({});
+  const newDate = new Date(event.start_date).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
 
   const fetchApi = async () => {
     try {
-      await axios.get(`http://localhost:2000/data/${id}`).then((response) => {
+      await axios.get(`http://localhost:2000/events/${id}`).then((response) => {
         // console.log(response.data);
         setEevent(response.data);
       });
@@ -24,20 +36,22 @@ const DetailEventPage = () => {
 
   return (
     <>
-      <div className="container">
-        <div className="content-top mt-7 mb-12 flex justify-center gap-x-12">
+      <div className="">
+        <div className="content-top mb-12 flex flex-col justify-center gap-x-12 laptop:mt-7 laptop:flex-row">
           <div className="banner">
             <img
-              src={event.url}
+              src={event.image_url ? event.image_url : banner}
               alt=""
-              className=" h-[250px] w-[650px] rounded-md shadow-lg"
+              className=" h-40 w-[380px] rounded-md shadow-lg laptop:h-[250px] laptop:w-[650px]"
             />
           </div>
           <div className="detail-card">
-            <Card className=" w-96 shadow-xl">
+            <Card className=" w-40 shadow-xl laptop:w-96">
               <CardBody>
                 <div className="title mb-4">
-                  <h1 className=" text-gray-900 text-2xl font-roboto">{event.name}</h1>
+                  <h1 className=" font-roboto text-2xl text-gray-900">
+                    {event.name}
+                  </h1>
                 </div>
                 <div className="additional flex flex-col gap-y-2">
                   <div className="date flex gap-x-2">
@@ -46,7 +60,8 @@ const DetailEventPage = () => {
                       viewBox="0 0 24 24"
                       strokeWidth={1.5}
                       stroke="currentColor"
-                      className="w-6 h-6 fill-primary-500">
+                      className="h-6 w-6 fill-primary-500"
+                    >
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -54,7 +69,7 @@ const DetailEventPage = () => {
                       />
                     </svg>
 
-                    <h3 className="text-gray-700">{event.date}</h3>
+                    <h3 className="text-gray-700">{newDate}</h3>
                   </div>
                   <div className="time flex gap-x-2">
                     <svg
@@ -62,33 +77,35 @@ const DetailEventPage = () => {
                       viewBox="0 0 24 24"
                       strokeWidth={1.5}
                       stroke="currentColor"
-                      className="w-6 h-6 fill-primary-500">
+                      className="h-6 w-6 fill-primary-500"
+                    >
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
                       />
                     </svg>
-                    <h3 className="text-gray-700">{event.time}</h3>
+                    <h3 className="text-gray-700">{`${event.start_time}`}</h3>
                   </div>
                   <div className="venue flex gap-x-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
-                      className="w-6 h-6 fill-primary-500">
+                      className="h-6 w-6 fill-primary-500"
+                    >
                       <path
                         fillRule="evenodd"
                         d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z"
                         clipRule="evenodd"
                       />
                     </svg>
-                    <h3 className="text-gray-700">{event.location}</h3>
+                    <h3 className="text-gray-700">{`${event.venue}, ${event.city}`}</h3>
                   </div>
                 </div>
               </CardBody>
-              <CardFooter className="pt-6 border-t flex gap-x-5">
+              <CardFooter className="flex gap-x-5 border-t pt-6">
                 <div className="avatar">
-                  <Avatar alt="" size="sm" className=" bg-blue-gray-200 mr-2" />
+                  <Avatar alt="" size="sm" className=" mr-2 bg-blue-gray-200" />
                 </div>
                 <div className="name">
                   <span className=" text-gray-500">Hosted by</span>
@@ -98,21 +115,28 @@ const DetailEventPage = () => {
             </Card>
           </div>
         </div>
-        <div className="content-main flex">
+        <div className="content-main flex flex-col laptop:flex-row">
           <div className="left w-3/5 pl-32">
             <div className="description">
               <p className="title text-lg text-gray-900">Description</p>
-              <p className=" mt-5 text-gray-700">{event.description}</p>
+              {event.description ? (
+                <p className=" mt-5 text-gray-700">{event.description}</p>
+              ) : (
+                <p className="mt-20 text-center font-medium tracking-wider text-gray-700">
+                  This event doesn't yet have an event description
+                </p>
+              )}
             </div>
           </div>
           <div className="right w-2/5">
-            <Card className="mt-6 w-96 ml-8">
+            <Card className="ml-8 mt-6 w-96">
               <CardBody>
                 <Link to={"/payment"}>
                   <Button
                     ripple={false}
                     fullWidth
-                    className=" bg-orange-400  text-white text-sm !shadow-md tracking-wider normal-case">
+                    className=" bg-orange-400  text-sm normal-case tracking-wider text-white !shadow-md"
+                  >
                     Buy Tickets
                   </Button>
                 </Link>

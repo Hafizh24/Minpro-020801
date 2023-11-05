@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Card,
   CardHeader,
@@ -7,8 +7,24 @@ import {
   Input,
 } from "@material-tailwind/react";
 import ButtonEvent from "./ButtonEvent";
+import { useSelector } from "react-redux";
 
 const EventCard = ({ formik }) => {
+  const [picture, setPicture] = useState(false);
+
+  const categories = useSelector((state) => state.event.category);
+
+  const handleChangeImage = (e) => {
+    const file = e.target.files[0];
+    const pic = URL.createObjectURL(file);
+    console.log(pic);
+
+    console.log(typeof pic);
+    setPicture(pic);
+    formik.setFieldValue("dropzoneFile", pic);
+
+    // formik.setFieldValue("dropzoneFile", e.target.files[0]);
+  };
   return (
     <>
       <Card className="w-full max-w-[46rem] shadow-lg laptop:mt-10">
@@ -37,20 +53,36 @@ const EventCard = ({ formik }) => {
                     />
                   </svg>
                 </div>
-                <input id="dropzone-file" type="file" className="hidden" />
+                <input
+                  id="dropzone-file"
+                  name="dropzoneFile"
+                  type="file"
+                  accept=".jpg,.jpeg,.png"
+                  className="hidden"
+                  onChange={handleChangeImage}
+                />
               </label>
             </div>
             <h1 className=" text-center text-lg text-white laptop:text-2xl">
               Upload Images/posters/banner
             </h1>
           </div>
+          <div>
+            {formik.errors.dropzoneFile ? (
+              <p className=" text-center text-red-900">
+                {formik.errors.dropzoneFile}
+              </p>
+            ) : null}
+          </div>
+          <br />
         </CardHeader>
+       
+          
         <CardBody>
           <Input
             name="eventName"
             value={formik.values.eventName}
             onChange={formik.handleChange}
-            required={true}
             type="text"
             placeholder="Event Name"
             variant="standard"
@@ -60,19 +92,27 @@ const EventCard = ({ formik }) => {
             }}
             containerProps={{ className: "min-w-[100px]" }}
           />
+          {formik.errors.eventName && formik.touched.eventName && (
+            <p className=" text-red-300">{formik.errors.eventName}</p>
+          )}
+
           <select
             name="category"
             value={formik.values.category}
             onChange={formik.handleChange}
-            defaultValue="default"
             className="peer block w-full appearance-none border-0 border-b-2 border-gray-200 bg-transparent px-0 py-2.5 text-sm text-gray-500 focus:border-gray-200 focus:outline-none focus:ring-0 dark:border-gray-700 dark:text-gray-400"
           >
-            <option value="default">Select Category</option>
-            <option value="Concert">Concert</option>
-            <option value="Seminars">Seminars</option>
-            <option value="Workshop">Workshops</option>
-            <option value="Festivals">Festivals</option>
+            <option>Select Category</option>
+            {categories.map((category, index) => (
+              <option key={index} value={category}>
+                {category}
+              </option>
+            ))}
           </select>
+
+          {formik.errors.category && formik.touched.category && (
+            <p className=" text-red-300">{formik.errors.category}</p>
+          )}
         </CardBody>
         <CardFooter className="pt-3">
           <div className="flex justify-start gap-x-28">
@@ -109,6 +149,8 @@ const EventCard = ({ formik }) => {
                 type={"date"}
                 value1={formik.values.eventStartDate}
                 value2={formik.values.eventEndDate}
+                error1={formik.errors.eventStartDate}
+                error2={formik.errors.eventEndDate}
                 name1="eventStartDate"
                 name2="eventEndDate"
                 label1={"Start Date"}
@@ -130,6 +172,15 @@ const EventCard = ({ formik }) => {
                   </svg>
                 }
               />
+              {formik.errors.eventStartDate &&
+                formik.touched.eventStartDate && (
+                  <p className=" text-red-300">
+                    {formik.errors.eventStartDate}
+                  </p>
+                )}
+              {formik.errors.eventEndDate && formik.touched.eventEndDate && (
+                <p className=" text-red-300">{formik.errors.eventEndDate}</p>
+              )}
               <ButtonEvent
                 formik={formik}
                 title={"Select Time"}
@@ -137,6 +188,8 @@ const EventCard = ({ formik }) => {
                 type={"time"}
                 value1={formik.values.eventStartTime}
                 value2={formik.values.eventEndTime}
+                error1={formik.errors.eventStartTime}
+                error2={formik.errors.eventEndTime}
                 name1="eventStartTime"
                 name2="eventEndTime"
                 label1={"Start Time"}
@@ -158,6 +211,15 @@ const EventCard = ({ formik }) => {
                   </svg>
                 }
               />
+              {formik.errors.eventStartTime &&
+                formik.touched.eventStartTime && (
+                  <p className=" text-red-300">
+                    {formik.errors.eventStartTime}
+                  </p>
+                )}
+              {formik.errors.eventEndTime && formik.touched.eventEndTime && (
+                <p className=" text-red-300">{formik.errors.eventEndTime}</p>
+              )}
             </div>
             <div className="flex flex-col">
               <h1>Location</h1>
@@ -169,6 +231,8 @@ const EventCard = ({ formik }) => {
                 type={"text"}
                 value1={formik.values.venue}
                 value2={formik.values.city}
+                error1={formik.errors.venue}
+                error2={formik.errors.city}
                 name1="venue"
                 name2="city"
                 label1={"Place Name"}
@@ -195,6 +259,12 @@ const EventCard = ({ formik }) => {
                   </svg>
                 }
               />
+              {formik.errors.venue && formik.touched.venue && (
+                <p className=" text-red-300">{formik.errors.venue}</p>
+              )}
+              {formik.errors.city && formik.touched.city && (
+                <p className=" text-red-300">{formik.errors.city}</p>
+              )}
             </div>
           </div>
         </CardFooter>

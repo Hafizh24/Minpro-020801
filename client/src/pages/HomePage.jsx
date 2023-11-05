@@ -14,11 +14,10 @@ import "swiper/css/navigation";
 
 const HomePage = () => {
   const [data, setData] = useState([]);
-  const [location, setLocation] = useState("Bandung");
 
   const fetchApi = async () => {
     try {
-      await axios.get(`http://localhost:2000/data?location=${location}`).then((response) => {
+      await axios.get(`http://localhost:2000/events`).then((response) => {
         // console.log(response.data);
         setData(response.data);
       });
@@ -30,31 +29,28 @@ const HomePage = () => {
   useEffect(() => {
     fetchApi();
     // eslint-disable-next-line
-  }, [location]);
+  }, []);
 
   return (
     <div>
       <Navbar />
       <MyCarousel />
-      <HomePageTabs location={location} setLocation={setLocation} />
+      <HomePageTabs />
       <div className="mx-20">
         <Swiper
           slidesPerView={4}
           navigation={true}
           modules={[Navigation]}
-          className="mySwiper">
+          className="mySwiper"
+        >
           {data.map((item) => (
             <SwiperSlide key={item.id}>
               <EventsCard>
-                <EventsCard.Header image={item.url} id={item.id} />
+                <EventsCard.Header image={item.image_url} id={item.id} />
                 <EventsCard.Body
                   name={item.name}
-                  date={item.date}
-                  price={item.price.toLocaleString("id-ID", {
-                    style: "currency",
-                    currency: "IDR",
-                    maximumFractionDigits: 0,
-                  })}
+                  date={item.start_date}
+                  price={item.price}
                 />
                 <EventsCard.Footer />
               </EventsCard>
@@ -62,13 +58,14 @@ const HomePage = () => {
           ))}
         </Swiper>
       </div>
-      <HomePageTabs />
+      {/* <HomePageTabs />
       <div className="mx-20 ">
         <Swiper
           slidesPerView={4}
           navigation={true}
           modules={[Navigation]}
-          className="mySwiper">
+          className="mySwiper"
+        >
           {data.map((item) => (
             <SwiperSlide key={item.id}>
               <EventsCard>
@@ -76,18 +73,14 @@ const HomePage = () => {
                 <EventsCard.Body
                   name={item.name}
                   date={item.date}
-                  price={item.price.toLocaleString("id-ID", {
-                    style: "currency",
-                    currency: "IDR",
-                    maximumFractionDigits: 0,
-                  })}
+                  price={item.price}
                 />
                 <EventsCard.Footer />
               </EventsCard>
             </SwiperSlide>
           ))}
         </Swiper>
-      </div>
+      </div> */}
       <Footer />
     </div>
   );

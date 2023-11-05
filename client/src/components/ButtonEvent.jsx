@@ -21,6 +21,8 @@ const ButtonEvent = ({
   name2,
   value1,
   value2,
+  error1,
+  error2,
 }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen((cur) => !cur);
@@ -54,6 +56,8 @@ const ButtonEvent = ({
               size="lg"
               variant="static"
               type={type}
+              onBlur={formik.handleBlur}
+              error={error1}
             />
             <Input
               onChange={formik.handleChange}
@@ -63,6 +67,8 @@ const ButtonEvent = ({
               size="lg"
               variant="static"
               type={type}
+              onBlur={formik.handleBlur}
+              error={error2}
             />
           </CardBody>
           <CardFooter className="pt-0">

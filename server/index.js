@@ -11,6 +11,9 @@ app.get("/api", (req, res) => {
   res.send("This is my API");
 });
 
+const { eventRouter } = require("./router");
+app.use("/events", eventRouter);
+
 app.listen(PORT, () => {
   // db.sequelize.sync({ alter: true });
   console.log(`Server running on Port : ${PORT}`);
