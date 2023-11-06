@@ -14,13 +14,16 @@ import "swiper/css/navigation";
 
 const HomePage = () => {
   const [data, setData] = useState([]);
+  const [city, setCity] = useState("Bandung");
 
   const fetchApi = async () => {
     try {
-      await axios.get(`http://localhost:2000/events`).then((response) => {
-        // console.log(response.data);
-        setData(response.data);
-      });
+      await axios
+        .get(`http://localhost:2000/events?city=${city}`)
+        .then((response) => {
+          console.log(response.data);
+          setData(response.data);
+        });
     } catch (error) {
       console.log(error);
     }
@@ -28,14 +31,15 @@ const HomePage = () => {
 
   useEffect(() => {
     fetchApi();
+    // console.log(data[0].Ticket.price);
     // eslint-disable-next-line
-  }, []);
+  }, [city]);
 
   return (
     <div>
       <Navbar />
       <MyCarousel />
-      <HomePageTabs />
+      <HomePageTabs city={city} setCity={setCity} />
       <div className="mx-20">
         <Swiper
           slidesPerView={4}
@@ -50,7 +54,7 @@ const HomePage = () => {
                 <EventsCard.Body
                   name={item.name}
                   date={item.start_date}
-                  price={item.price}
+                  price={item.Ticket?.price}
                 />
                 <EventsCard.Footer />
               </EventsCard>

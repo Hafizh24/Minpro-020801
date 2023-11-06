@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Event.belongsTo(models.User);
-      Event.hasMany(models.Ticket);
+      Event.hasOne(models.Ticket);
     }
   }
   Event.init(

@@ -8,20 +8,31 @@ import {
 } from "@material-tailwind/react";
 import ButtonEvent from "./ButtonEvent";
 import { useSelector } from "react-redux";
+import avatar from "../assets/avatar.webp";
 
-const EventCard = ({ formik }) => {
+const EventCard = ({ formik, setFile }) => {
   const [picture, setPicture] = useState(false);
 
   const categories = useSelector((state) => state.event.category);
 
-  const handleChangeImage = (e) => {
-    const file = e.target.files[0];
-    const pic = URL.createObjectURL(file);
-    console.log(pic);
+  // const upload = async () => {
+  //   const formData = new FormData();
+  //   formData.append("file", file);
+  //   await axios
+  //     .post("http://localhost:2000/events/upload", formData)
+  //     .then((res) => {})
+  //     .catch((err) => console.log(err));
+  // };
 
-    console.log(typeof pic);
-    setPicture(pic);
-    formik.setFieldValue("dropzoneFile", pic);
+  const handleChangeImage = (e) => {
+    // const files = e.target.files[0];
+    // console.log(files);
+    // const pic = URL.createObjectURL(file);
+
+    // setFile(files);
+
+    // setPicture(pic);
+    formik.setFieldValue("file", e.currentTarget.files[0]);
 
     // formik.setFieldValue("dropzoneFile", e.target.files[0]);
   };
@@ -36,7 +47,7 @@ const EventCard = ({ formik }) => {
         >
           <div className="flex flex-col items-center gap-y-4 pt-10 laptop:pt-32">
             <div className="flex h-14 w-14 items-center justify-center rounded-full border-2">
-              <label htmlFor="dropzone-file" className=" cursor-pointer">
+              <label htmlFor="file" className=" cursor-pointer">
                 <div className="flex flex-col items-center justify-center pb-5 pt-5 text-white">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -54,8 +65,8 @@ const EventCard = ({ formik }) => {
                   </svg>
                 </div>
                 <input
-                  id="dropzone-file"
-                  name="dropzoneFile"
+                  id="file"
+                  name="file"
                   type="file"
                   accept=".jpg,.jpeg,.png"
                   className="hidden"
@@ -68,10 +79,8 @@ const EventCard = ({ formik }) => {
             </h1>
           </div>
           <div>
-            {formik.errors.dropzoneFile ? (
-              <p className=" text-center text-red-900">
-                {formik.errors.dropzoneFile}
-              </p>
+            {formik.errors.file ? (
+              <p className=" text-center text-red-900">{formik.errors.file}</p>
             ) : null}
           </div>
           <br />
@@ -112,31 +121,23 @@ const EventCard = ({ formik }) => {
           {formik.errors.category && formik.touched.category && (
             <p className=" text-red-300">{formik.errors.category}</p>
           )}
+          {/* <div>
+            <input type="file" onChange={(e) => setFile(e.target.files[0])} />
+            <button type="button" onClick={upload}>
+              pload
+            </button>
+          </div> */}
         </CardBody>
         <CardFooter className="pt-3">
           <div className="flex justify-start gap-x-28">
             <div>
               <h1>Hosted by</h1>
-              <div className="mt-2 flex h-14 w-14 items-center justify-center rounded-full border">
-                <label htmlFor="dropzone-file" className=" cursor-pointer">
-                  <div className="flex flex-col items-center justify-center pb-6 pt-5 text-gray-800">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={1.5}
-                      stroke="currentColor"
-                      className="h-8 w-8"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z"
-                      />
-                    </svg>
-                  </div>
-                  <input id="dropzone-file" type="file" className="hidden" />
-                </label>
+              <div className="mt-2 flex items-center justify-center">
+                <img
+                  src={avatar}
+                  alt=""
+                  className=" h-12 w-12 rounded-full border shadow-md"
+                />
               </div>
             </div>
             <div>

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import EventCard from "../components/EventCard";
 import { EventTabs } from "../components/EventTabs";
 import SimpleNavbar from "../components/SimpleNavbar";
@@ -12,8 +12,8 @@ const ValidationSchema = Yup.object({
   ticketName: Yup.string().required("Ticket Name is required"),
   category: Yup.string().required("Category is required"),
   ticketQuantity: Yup.number()
-    .min(0)
-    .max(1000)
+    .min(0, "Number of Tickets must be greater than or equal to 0")
+    .max(1000, "Number of Tickets must be less than or equal to 1000")
     .required("Number of Tickets is required"),
   eventStartDate: Yup.date().required("Start Date is required"),
   eventEndDate: Yup.date().required("End Date is required"),
@@ -34,17 +34,6 @@ const ValidationSchema = Yup.object({
 });
 
 const CreateEventPage = () => {
-  const handleSubmit = async (data) => {
-    try {
-      console.log(data);
-      await axios.post("http://localhost:2000/events", data);
-      console.log("success upload");
-      alert("success upload");
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const formik = useFormik({
     initialValues: {
       eventName: "",
@@ -61,15 +50,34 @@ const CreateEventPage = () => {
       ticketPrice: "",
       ticketStartDate: "",
       ticketEndDate: "",
-      dropzoneFile: "",
+      file: null,
     },
     validationSchema: ValidationSchema,
-    onSubmit: (values) => {
-      console.log(values);
-      console.log(values.dropzoneFile);
-      // alert(JSON.stringify(values, null, 2));
-      handleSubmit(values);
-      window.location.reload();
+    onSubmit: async (values, action) => {
+      alert(JSON.stringify(values, null, 2));
+      // window.location.reload();
+      // try {
+      //   const data = new FormData();
+      //   data.append("eventName", values.eventName);
+      //   data.append("category", values.category);
+      //   data.append("eventStartDate", values.eventStartDate);
+      //   data.append("eventEndDate", values.eventEndDate);
+      //   data.append("eventStartTime", values.eventStartTime);
+      //   data.append("eventEndTime", values.eventEndTime);
+      //   data.append("venue", values.venue);
+      //   data.append("city", values.city);
+      //   data.append("description", values.description);
+      //   data.append("ticketName", values.ticketName);
+      //   data.append("ticketQuantity", values.ticketQuantity);
+      //   data.append("ticketPrice", values.ticketPrice);
+      //   data.append("file", values.file);
+
+      //   await axios.post("http://localhost:2000/events", data);
+
+      //   alert("success upload");
+      // } catch (error) {
+      //   console.log(error);
+      // }
     },
   });
 

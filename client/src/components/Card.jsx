@@ -16,11 +16,12 @@ export function EventsCard(props) {
 
 const Header = (props) => {
   const { image, id } = props;
+
   return (
     <CardHeader color="blue-gray" className="relative rounded-sm">
       <Link to={`/event/${id}`}>
         <img
-          src={image ? image : banner}
+          src={image ? `http://localhost:2000/${image}` : banner}
           alt=""
           className="h-[200px] w-[500px]"
         />
@@ -36,9 +37,18 @@ const Body = (props) => {
     month: "short",
     year: "numeric",
   });
-  // const newPrice = price;
 
-  // console.log(typeof newPrice);
+  console.log(price);
+  let newPrice;
+  if (price) {
+    newPrice = price.toLocaleString("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      minimumFractionDigits: 0,
+    });
+  }
+
+  // console.log(newPrice);
 
   return (
     <CardBody className="mb-10">
@@ -47,7 +57,7 @@ const Body = (props) => {
       </Typography>
       <Typography className="mb-4 font-sans text-sm">{newDate}</Typography>
       <Typography className="font-sans text-sm font-semibold text-blue-gray-900">
-        {price}
+        {newPrice}
       </Typography>
     </CardBody>
   );

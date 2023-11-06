@@ -15,12 +15,22 @@ export function EventTabs({ formik }) {
   const [isPaid, setIspaid] = useState(true);
   const [isPromotion, setIsPromotion] = useState(true);
 
-  // const handleChange = (e) => {
-  //   setIspaid(e.target.checked);
-  //   if (!isPaid) {
-  //     formik.setFieldValue("ticketPrice", 0);
-  //   }
-  // };
+  const handleChangePaid = (e) => {
+    setIspaid(e.target.checked);
+    if (!isPaid) {
+      formik.setFieldValue("ticketPrice", 0);
+    }
+  };
+
+  const handleChangePromotion = (e) => {
+    setIsPromotion(e.target.checked);
+    if (!isPromotion) {
+      formik.setFieldValue("ticketStartDate", "");
+      formik.setFieldValue("ticketEndDate", "");
+      formik.setFieldValue("discount", 0);
+      formik.setFieldValue("quota", 0);
+    }
+  };
 
   return (
     <Tabs value={activeTab} className="mt-16">
@@ -69,9 +79,12 @@ export function EventTabs({ formik }) {
               variant="static"
               label="Number of Tickets"
               type="number"
+              min={0}
+              max={1000}
               name="ticketQuantity"
               value={formik.values.ticketQuantity}
               onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
             />
 
             {formik.errors.ticketQuantity && formik.touched.ticketQuantity && (
@@ -89,9 +102,7 @@ export function EventTabs({ formik }) {
               </span>
               <Switch
                 checked={isPaid}
-                onChange={(e) => {
-                  setIspaid(e.target.checked);
-                }}
+                onChange={handleChangePaid}
                 color="orange"
                 ripple={false}
               />
@@ -101,9 +112,12 @@ export function EventTabs({ formik }) {
                 variant="static"
                 label="Price"
                 name="ticketPrice"
+                disabled={false}
                 value={formik.values.ticketPrice}
                 onChange={formik.handleChange}
                 type="number"
+                min={10000}
+                max={100000000000}
               />
             )}
 
@@ -113,9 +127,7 @@ export function EventTabs({ formik }) {
               </span>
               <Switch
                 checked={isPromotion}
-                onChange={(e) => {
-                  setIsPromotion(e.target.checked);
-                }}
+                onChange={handleChangePromotion}
                 color="orange"
                 ripple={false}
               />
@@ -144,8 +156,8 @@ export function EventTabs({ formik }) {
                   variant="static"
                   label="Discount"
                   type="number"
-                  name="ticketQuantity"
-                  value={formik.values.ticketQuantity}
+                  name="discount"
+                  value={formik.values.discount}
                   onChange={formik.handleChange}
                   min="0"
                   max="1000"
@@ -154,8 +166,8 @@ export function EventTabs({ formik }) {
                   variant="static"
                   label="Quota"
                   type="number"
-                  name="ticketQuantity"
-                  value={formik.values.ticketQuantity}
+                  name="quota"
+                  value={formik.values.quota}
                   onChange={formik.handleChange}
                   min="0"
                   max="1000"

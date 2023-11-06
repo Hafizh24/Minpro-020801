@@ -9,14 +9,17 @@ module.exports = {
 
       if (city) {
         const result = await Event.findAll({
-          where: {
-            city: city,
-          },
+          where: { city: city },
+          include: [
+            {
+              model: Ticket,
+            },
+          ],
         });
         res.status(200).send(result);
       }
 
-      const result = await Event.findAll();
+      const result = await Event.findAll({ include: Ticket });
       res.status(200).send(result);
     } catch (err) {
       console.log(err);
@@ -52,15 +55,17 @@ module.exports = {
       ticketName,
       ticketQuantity,
       ticketPrice,
-      dropzoneFile,
     } = req.body;
     try {
+      console.log(req.banner, ">>>>>banner");
+      console.log(req.file, ">>>>>file");
+      // console.log(banner);
       const event = await Event.create({
         name: eventName,
         desciption: desciption,
         venue: venue,
         city: city,
-        image_url: dropzoneFile,
+        image_url: req.file?.path,
         start_date: eventStartDate,
         end_date: eventEndDate,
         start_time: eventStartTime,
@@ -78,5 +83,8 @@ module.exports = {
       console.log(err);
       res.status(400).send({ message: err.message });
     }
+  },
+  testUpload: (req, res) => {
+    console.log(req.file);
   },
 };

@@ -4,7 +4,7 @@ const eventSlice = createSlice({
   name: "event",
   initialState: {
     value: {},
-    city: ["Jakarta", "Solo", "Bandung"],
+    city: ["Jakarta", "Yogyakarta", "Bandung"],
     category: ["Seminars", "Festivals", "Match", "Concert"],
   },
   reducers: {

@@ -14,6 +14,7 @@ import { useDispatch } from "react-redux";
 import Required from "./components/required";
 import { Verification } from "./components/verifikasi";
 import Profile from "./pages/ProfilePage";
+import Test from "./pages/Test";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,7 @@ const router = createBrowserRouter([
   { path: "/signin", element: <LogIn /> },
   { path: "/event/:id", element: <DetailEventPage /> },
   { path: "/profile", element: <Profile /> },
+  { path: "/test", element: <Test /> },
 ]);
 
 function App() {
@@ -40,7 +42,7 @@ function App() {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
       console.log("ini rsponese", response);
       dispatch(setData(response.data));
