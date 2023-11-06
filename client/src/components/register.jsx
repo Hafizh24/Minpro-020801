@@ -60,25 +60,6 @@ export const Register = () => {
     }
   };
 
-  const referralCodeGenerator = () => {
-    if (formik.values.name.length >= 2) {
-      console.log("Ini length", formik.values.name.length);
-      const words = formik.values.name.split(" ");
-      const userChars = words
-        .map((word) => word.charAt(0).toUpperCase())
-        .join("");
-      const randomChars = Math.random()
-        .toString(36)
-        .substring(2, 6)
-        .toUpperCase();
-      const generatedCode = `${userChars}${randomChars}`;
-      console.log("Ini generated Code", generatedCode);
-      setReferralCode(generatedCode);
-    } else {
-      // alert("name must at least contain 2 characters");
-    }
-  };
-
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -207,9 +188,9 @@ export const Register = () => {
                 containerProps={{ className: "-ml-2.5" }}
               />
               <Button
-                onClick={() => {
-                  referralCodeGenerator();
-                }}
+                // onClick={() => {
+                //   referralCodeGenerator();
+                // }}
                 type="submit"
                 className="mt-6 bg-orange-400 text-black text-sm"
                 fullWidth
