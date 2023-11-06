@@ -16,7 +16,6 @@ import PaymentPage from "./pages/payment";
 import AddToCart from "./pages/jumlahTiket";
 import ProfileCard from "./pages/ProfileCard";
 
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -24,16 +23,17 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   { path: "/discovery", element: <DiscoveryPage /> },
-  
+
   { path: "/signup", element: <Register /> },
   { path: "/signin", element: <LogIn /> },
   { path: "/event/:id", element: <DetailEventPage /> },
   {
-    element: <Required></Required>, children: [
+    element: <Required></Required>,
+    children: [
       { path: "/create-event", element: <CreateEventPage /> },
       { path: "/profile", element: <ProfileCard /> },
-      { path: "/profile-setting", element: <ProfileSetting />}
-    ]
+      { path: "/profile-setting", element: <ProfileSetting /> },
+    ],
   },
 
   {

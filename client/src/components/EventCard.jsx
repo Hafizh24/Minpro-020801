@@ -18,6 +18,15 @@ const EventCard = ({ formik, setFile, selected, setSelected }) => {
 
   const categories = useSelector((state) => state.event.category);
 
+  // const upload = async () => {
+  //   const formData = new FormData();
+  //   formData.append("file", file);
+  //   await axios
+  //     .post("http://localhost:2000/events/upload", formData)
+  //     .then((res) => {})
+  //     .catch((err) => console.log(err));
+  // };
+
   const handleChangeImage = (e) => {
     // const files = e.target.files[0];
     // console.log(files);
