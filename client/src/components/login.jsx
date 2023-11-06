@@ -36,21 +36,21 @@ export const LogIn = () => {
       if (data.input_data.includes("@")) {
         data.email = data.input_data;
         delete data.input_data;
-        const response = await axios.get(
-          `http://localhost:2000/users?email=${data.email}&password=${data.password}`
+        const response = await axios.post(
+          `http://localhost:2000/users/login`, data
         );
         setUser(response.data[0]);
-        localStorage.setItem("id", response.data[0]?.id);
+        localStorage.setItem("token", response.data?.token);
         navigate("/discovery");
         window.location.reload();
       } else {
         data.username = data.input_data;
         delete data.input_data;
-        const response = await axios.get(
-          `http://localhost:2000/users?username=${data.username}&password=${data.password}`
+        const response = await axios.post(
+          `http://localhost:2000/users/login`, data
         );
         setUser(response.data[0]);
-        localStorage.setItem("id", response.data[0]?.id);
+        localStorage.setItem("token", response.data?.token);
         navigate("/");
         window.location.reload();
       }

@@ -2,12 +2,17 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { FaUserLarge } from "react-icons/fa6";
-import { Menu, MenuHandler, MenuList, MenuItem, Button } from "@material-tailwind/react";
+import {
+  Menu,
+  MenuHandler,
+  MenuList,
+  MenuItem,
+  Button,
+} from "@material-tailwind/react";
 
 const Navbar = () => {
   const user = useSelector((state) => state.user.value);
   const id = user.id;
-  console.log(user);
   const checkUser = () => {
     if (user) {
       // console.log(user);
@@ -23,7 +28,7 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem("id");
+    localStorage.removeItem("token");
     navigate("/");
     window.location.reload();
   };
@@ -115,32 +120,32 @@ const Navbar = () => {
               </button>
             </Link>
           </div>
-        ) : ( 
+        ) : (
           // <Link to={"/discovery"}>
-            <Menu>
-              <MenuHandler>
-                <Button
+          <Menu>
+            <MenuHandler>
+              <Button
+                className="rounded-full w-fit"
                 // onClick={handleLogout}
                 // className={
                 // " border bg-brown-100 rounded-full py-2 px-4 border-brown-200 text-blue-gray-900"
                 //  }
-                >
-                  <FaUserLarge />
-                </Button>
-              </MenuHandler>
-              <MenuList>
-                <Link to={"/profile"}>
+              >
+                <FaUserLarge />
+              </Button>
+            </MenuHandler>
+            <MenuList>
+              <Link to={"/profile"}>
                 <MenuItem> My Profile </MenuItem>
-                </Link>
-                <Link to={"/"}>
+              </Link>
+              <Link to={"/"}>
                 <MenuItem> Home </MenuItem>
-                </Link>
-                <Link to={"/"}>
+              </Link>
+              <Link to={"/"}>
                 <MenuItem onClick={handleLogout}> Log Out </MenuItem>
-                </Link>
-
-              </MenuList>
-            </Menu>
+              </Link>
+            </MenuList>
+          </Menu>
           // </Link>
         )}
       </div>
