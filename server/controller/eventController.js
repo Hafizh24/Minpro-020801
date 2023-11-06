@@ -67,6 +67,9 @@ module.exports = {
       discount,
     } = req.body;
     try {
+      console.log(req.banner, ">>>>>banner");
+      console.log(req.file, ">>>>>file");
+      // console.log(banner);
       const event = await Event.create({
         name: eventName,
         desciption,
@@ -99,5 +102,8 @@ module.exports = {
       console.log(err);
       res.status(400).send({ message: err.message });
     }
+  },
+  testUpload: (req, res) => {
+    console.log(req.file);
   },
 };
