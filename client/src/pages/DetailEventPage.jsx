@@ -9,10 +9,12 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import banner from "../assets/banner-event.jpg";
+import avatar from "../assets/avatar.webp";
 
 const DetailEventPage = () => {
   const { id } = useParams();
   const [event, setEevent] = useState({});
+
   const newDate = new Date(event.start_date).toLocaleDateString("en-GB", {
     day: "numeric",
     month: "short",
@@ -40,7 +42,11 @@ const DetailEventPage = () => {
         <div className="content-top mb-12 flex flex-col justify-center gap-x-12 laptop:mt-7 laptop:flex-row">
           <div className="banner">
             <img
-              src={event.image_url ? event.image_url : banner}
+              src={
+                event.image_url
+                  ? `http://localhost:2000/${event.image_url}`
+                  : banner
+              }
               alt=""
               className=" h-40 w-[380px] rounded-md shadow-lg laptop:h-[250px] laptop:w-[650px]"
             />
@@ -105,11 +111,16 @@ const DetailEventPage = () => {
               </CardBody>
               <CardFooter className="flex gap-x-5 border-t pt-6">
                 <div className="avatar">
-                  <Avatar alt="" size="sm" className=" mr-2 bg-blue-gray-200" />
+                  <Avatar
+                    alt=""
+                    size="sm"
+                    // src={event.User.img_url ? event.User.img_url : avatar}
+                    className=" mr-2 bg-blue-gray-200"
+                  />
                 </div>
                 <div className="name">
                   <span className=" text-gray-500">Hosted by</span>
-                  <p></p>
+                  <p>{event.User?.username}</p>
                 </div>
               </CardFooter>
             </Card>

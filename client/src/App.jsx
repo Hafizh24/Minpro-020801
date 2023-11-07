@@ -40,7 +40,7 @@ function App() {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
       console.log("ini rsponese", response);
       dispatch(setData(response.data));

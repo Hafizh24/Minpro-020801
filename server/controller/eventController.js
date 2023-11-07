@@ -1,6 +1,8 @@
 const db = require("../models");
 const Event = db.Event;
 const Ticket = db.Ticket;
+const User = db.User;
+const Promotion = db.Promotion;
 
 module.exports = {
   getAll: async (req, res) => {
@@ -9,15 +11,18 @@ module.exports = {
 
       if (city) {
         const result = await Event.findAll({
-          where: {
-            city: city,
-          },
+          where: { city: city },
+          include: [
+            {
+              model: Ticket,
+            },
+          ],
         });
-        res.status(200).send(result);
+        return res.status(200).send(result);
       }
 
-      const result = await Event.findAll();
-      res.status(200).send(result);
+      const result = await Event.findAll({ include: Ticket });
+      return res.status(200).send(result);
     } catch (err) {
       console.log(err);
       res.status(400).send({ message: err.message });
@@ -30,6 +35,11 @@ module.exports = {
         where: {
           id: req.params.id,
         },
+        include: [
+          {
+            model: User,
+          },
+        ],
       });
       res.status(200).send(result);
     } catch (error) {
@@ -49,18 +59,21 @@ module.exports = {
       venue,
       city,
       desciption,
-      ticketName,
       ticketQuantity,
       ticketPrice,
-      dropzoneFile,
+      promotionStartDate,
+      promotionEndDate,
+      quota,
+      discount,
     } = req.body;
     try {
       const event = await Event.create({
         name: eventName,
-        desciption: desciption,
-        venue: venue,
-        city: city,
-        image_url: dropzoneFile,
+        desciption,
+        category,
+        venue,
+        city,
+        image_url: req.file?.path,
         start_date: eventStartDate,
         end_date: eventEndDate,
         start_time: eventStartTime,
@@ -68,11 +81,19 @@ module.exports = {
       });
 
       const ticket = await Ticket.create({
-        name: ticketName,
         total_stock: ticketQuantity,
         price: ticketPrice,
         EventId: event.id,
       });
+
+      const promotion = await Promotion.create({
+        start_date: promotionStartDate,
+        end_date: promotionEndDate,
+        quota,
+        discount,
+        EventId: event.id,
+      });
+
       res.status(200).send({ message: "Success Create Event", ticket: ticket, event, event });
     } catch (err) {
       console.log(err);

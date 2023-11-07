@@ -37,7 +37,8 @@ export const LogIn = () => {
         data.email = data.input_data;
         delete data.input_data;
         const response = await axios.post(
-          `http://localhost:2000/users/login`, data
+          `http://localhost:2000/users/login`,
+          data,
         );
         setUser(response.data[0]);
         localStorage.setItem("token", response.data?.token);
@@ -47,7 +48,8 @@ export const LogIn = () => {
         data.username = data.input_data;
         delete data.input_data;
         const response = await axios.post(
-          `http://localhost:2000/users/login`, data
+          `http://localhost:2000/users/login`,
+          data,
         );
         setUser(response.data[0]);
         localStorage.setItem("token", response.data?.token);
@@ -73,7 +75,7 @@ export const LogIn = () => {
   });
   return (
     <>
-      <div className=" bg-gray-200 min-h-screen flex items-center justify-center">
+      <div className=" flex min-h-screen items-center justify-center bg-gray-200">
         <div className="flex">
           <Card color="transparent" shadow={false}>
             <Typography
@@ -88,7 +90,7 @@ export const LogIn = () => {
             </Typography>
             <form
               onSubmit={formik.handleSubmit}
-              className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
+              className="mb-2 mt-8 w-80 max-w-screen-lg sm:w-96"
             >
               <div className="mb-4 flex flex-col gap-6">
                 <Input
@@ -117,7 +119,7 @@ export const LogIn = () => {
                   }
                 />
                 {formik.touched.password || formik.errors.password ? (
-                  <div className=" text-red-900 mt-[-20px]">
+                  <div className=" mt-[-20px] text-red-900">
                     {formik.errors.password}
                   </div>
                 ) : null}
@@ -125,7 +127,7 @@ export const LogIn = () => {
 
               <Button
                 type="submit"
-                className="mt-6 bg-orange-400 text-black text-sm"
+                className="mt-6 bg-orange-400 text-sm text-black"
                 fullWidth
               >
                 Sign In
