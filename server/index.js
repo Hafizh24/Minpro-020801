@@ -11,10 +11,12 @@ app.get("/api", (req, res) => {
   res.send("This is my API");
 });
 
-const { eventRouter } = require("./router");
+const { eventRouter, paymentRouter } = require("./router");
 app.use("/events", eventRouter);
+app.use("/transaksi", paymentRouter)
+
 
 app.listen(PORT, () => {
-  // db.sequelize.sync({ alter: true });
+  db.sequelize.sync({ alter: true });
   console.log(`Server running on Port : ${PORT}`);
 });
