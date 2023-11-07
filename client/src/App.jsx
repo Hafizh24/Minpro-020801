@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import ErrorPage from "./pages/ErrorPage";
 import DiscoveryPage from "./pages/DiscoveryPage";
-import { Register }  from "./components/register";
+import { Register } from "./components/register";
 import { LogIn } from "./components/login";
 import CreateEventPage from "./pages/CreateEventPage";
 import DetailEventPage from "./pages/DetailEventPage";
@@ -40,22 +40,28 @@ element: <AddToCart/>
 ]);
 
 function App() {
-  const id = localStorage.getItem("id");
+  const token = localStorage.getItem("token");
   const dispatch = useDispatch();
-  console.log(id);
   const keepLogin = async () => {
-    try{
-        const response = await axios.get(`http://localhost:2000/users/${id}`)
-        dispatch(setData(response.data));
-        console.log(response.data)
-    }catch(err){
+    try {
+      const response = await axios.get(
+        `http://localhost:2000/users/keep-login`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+      console.log("ini rsponese", response);
+      dispatch(setData(response.data));
+    } catch (err) {
       console.log(err);
     }
-  }
+  };
 
   useEffect(() => {
     keepLogin();
-  }, [])
+  }, []);
 
   return (
     <>

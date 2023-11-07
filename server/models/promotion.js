@@ -1,7 +1,7 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class Referral extends Model {
+  class Promotion extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -9,17 +9,20 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Referral.belongsTo(models.User);
+      Promotion.belongsTo(models.Event);
     }
   }
-  Referral.init(
+  Promotion.init(
     {
-      code: DataTypes.STRING,
+      start_date: DataTypes.STRING,
+      end_date: DataTypes.STRING,
+      quota: DataTypes.INTEGER,
+      discount: DataTypes.INTEGER,
     },
     {
       sequelize,
-      modelName: "Referral",
+      modelName: "Promotion",
     }
   );
-  return Referral;
+  return Promotion;
 };

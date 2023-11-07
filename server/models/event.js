@@ -10,7 +10,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Event.belongsTo(models.User);
-      Event.hasMany(models.Ticket);
+      Event.hasOne(models.Ticket);
+      Event.hasOne(models.Promotion);
     }
   }
   Event.init(
@@ -23,6 +24,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.TEXT,
         allowNull: true,
       },
+      category: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       venue: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -32,11 +37,11 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       start_date: {
-        type: DataTypes.STRING,
+        type: DataTypes.DATEONLY,
         allowNull: false,
       },
       end_date: {
-        type: DataTypes.STRING,
+        type: DataTypes.DATEONLY,
         allowNull: false,
       },
       start_time: {

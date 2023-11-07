@@ -48,9 +48,6 @@ export const Register = () => {
       theme: "light",
     });
   const handleSubmit = async (data) => {
-    console.log("ini name", formik.values.name);
-    console.log("ini referral", referralCode);
-    data.referral = referralCode;
     try {
       console.log(data, "ini data");
       await axios.post("http://localhost:2000/users", data);
@@ -60,32 +57,13 @@ export const Register = () => {
     }
   };
 
-  const referralCodeGenerator = () => {
-    if (formik.values.name.length >= 2) {
-      console.log("Ini length", formik.values.name.length);
-      const words = formik.values.name.split(" ");
-      const userChars = words
-        .map((word) => word.charAt(0).toUpperCase())
-        .join("");
-      const randomChars = Math.random()
-        .toString(36)
-        .substring(2, 6)
-        .toUpperCase();
-      const generatedCode = `${userChars}${randomChars}`;
-      console.log("Ini generated Code", generatedCode);
-      setReferralCode(generatedCode);
-    } else {
-      // alert("name must at least contain 2 characters");
-    }
-  };
-
   const formik = useFormik({
     initialValues: {
       name: "",
       email: "",
       username: "",
       password: "",
-      // referral: referralCodeGenerator()
+      referral_code: "",
     },
     validationSchema: RegisterSchema,
     onSubmit: (values, action) => {
@@ -186,7 +164,9 @@ export const Register = () => {
                     {formik.errors.password}
                   </div>
                 ) : null}
-                <Input size="lg" label="Referral" name="referral" />
+                <Input size="lg" label="Referral" name="referral_code"
+                onChange={formik.handleChange}
+                value={formik.values.referral_code}/>
               </div>
               <Checkbox
                 label={
@@ -207,9 +187,9 @@ export const Register = () => {
                 containerProps={{ className: "-ml-2.5" }}
               />
               <Button
-                onClick={() => {
-                  referralCodeGenerator();
-                }}
+                // onClick={() => {
+                //   referralCodeGenerator();
+                // }}
                 type="submit"
                 className="mt-6 bg-orange-400 text-black text-sm"
                 fullWidth
