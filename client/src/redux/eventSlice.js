@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const eventSlice = createSlice({
   name: "event",
   initialState: {
-    value: {},
+    data: {},
     city: ["Jakarta", "Yogyakarta", "Bandung", "Padang"],
     category: ["Seminars", "Festivals", "Match", "Concert"],
     cities: [
@@ -59,7 +59,7 @@ const eventSlice = createSlice({
   },
   reducers: {
     setData: (state, action) => {
-      state.value = action.payload;
+      state.data = action.payload;
     },
   },
 });
