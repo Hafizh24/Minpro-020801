@@ -142,7 +142,7 @@ const DetailEventPage = () => {
           <div className="right w-2/5">
             <Card className="ml-8 mt-6 w-96">
               <CardBody>
-                <Link to={"/payment"}>
+                <Link to={"/jumlahTiket"}>
                   <Button
                     ripple={false}
                     fullWidth

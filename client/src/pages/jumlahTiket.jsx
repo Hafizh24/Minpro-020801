@@ -26,8 +26,8 @@ const AddToCart = () => {
   const fetchApi = async () => {
     try {
       await axios
-        .get(`http://localhost:2000/data?&_limit=1`)
-        // /posts?_page=7&_limit=20
+        .get(`http://localhost:2000/:id`)
+        
         .then((response) => {
           setData(response.data);
         });

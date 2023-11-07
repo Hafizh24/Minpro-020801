@@ -48,5 +48,6 @@ export const ProfileCard = () => {
         </CardHeader>
       </Card>
     </div>
+    </>
   );
 };
