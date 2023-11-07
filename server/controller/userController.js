@@ -8,7 +8,7 @@ const {Op} = require('sequelize')
 module.exports = {
     register: async (req, res) => {
         try{
-            const {name, username, email, password } = req.body
+            const {name, username, email, password, referral_code } = req.body
             function referralCodeGenerator (name) {
                 if (name.length >= 2) {
                   console.log("Ini length", name.length);
@@ -54,6 +54,24 @@ module.exports = {
                     points: 0,
                     UserId: result.id
                 })
+                console.log("ini referal", referral_code);
+                if (referral_code) {
+                    const cont = await Referral.findOne({
+                        where: {
+                            code: referral_code
+                        }
+                    })
+                    console.log('ini cont', cont);
+                    if (cont) {
+                        await User.increment('points', {by: 5000, where: 
+                        {
+                            id: result.id
+                        }})
+                        await User.increment('points', {by: 10000, where:{
+                            id: cont.UserId
+                        }})
+                    }
+                }
                 return res.status(200).send({message:'Register Success',result:result})
             } else{
                 return res.status(400).send("User already exist")
@@ -80,24 +98,14 @@ module.exports = {
                  user = await User.findOne({
                     where: {
                         username: username
-                    },
-                    // include: {
-                    //     model: Referral,
-                    //     required: true,
-                    //     attributes: ['code', 'points']
-                    // }
+                    }
                 })
             }
             else if (email) {
                  user = await User.findOne({
                     where: {
                         email: email
-                    },
-                    // include: {
-                    //     model: Referral,
-                    //     required: true,
-                    //     attributes: ['code', 'points']
-                    // }
+                    }
                 })
             }
             if (!user){
@@ -136,7 +144,7 @@ module.exports = {
                 include: {
                     model: Referral,
                     required: true,
-                    attributes: ['code', 'points']
+                    attributes: ['code']
                 }
             }) 
             res.status(200).send(result)
@@ -173,6 +181,35 @@ module.exports = {
         } catch (err) {
             console.log(err);
             res.status(400).send({ err: err.message })
+        }
+    },
+    updateImage: async (req, res) => {
+        try {
+            await User.update({ imgProfile: req.file?.path }, {
+                where: {
+                    id: req.user.id
+                }
+            })
+            res.status(200).send('success upload')
+        } catch (err) {
+            console.log(err);
+            res.status(400).send({ err: err.message })
+        }
+    },
+    deleteAccount: async (req, res) => {
+        try{
+            const user = await User.findOne({
+                where: {
+                    id: req.user.id
+                }
+            })
+
+            console.log(user);
+            await user.destroy()
+            res.status(200).send('account deleted')
+        } catch (err) {
+            console.log(err);
+            res.status(400).send({err: err.message})
         }
     }
 }

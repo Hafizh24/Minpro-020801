@@ -5,6 +5,7 @@ import {
   CardFooter,
   Typography,
   Tooltip,
+  Input
 } from "@material-tailwind/react";
 
 import { UseSelector, useSelector } from "react-redux/es/hooks/useSelector";
@@ -13,6 +14,8 @@ export const ProfileCard = () => {
   const user = useSelector((state) => state.user.value);
   console.log(user);
   return (
+    <>
+    <Input variant="static" label='static' placeholder="Static"></Input>
     <div className="flex w-screen h-screen items-start justify-end">
       <Card className="w-96 shadow-none border-red-200 border">
         <CardHeader
@@ -35,8 +38,16 @@ export const ProfileCard = () => {
           >
             {user.Referral?.code}
           </Typography>
+          <Typography
+            color="blue-gray"
+            className="font-medium my-4"
+            textGradient
+          >
+            {user.points}
+          </Typography>
         </CardHeader>
       </Card>
     </div>
+    </>
   );
 };
