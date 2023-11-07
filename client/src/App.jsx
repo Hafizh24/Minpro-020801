@@ -13,7 +13,9 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import Required from "./components/required";
 import { Verification } from "./components/verifikasi";
-import Profile from "./pages/ProfilePage";
+import  Profile  from "./pages/ProfilePage"
+import PaymentPage from "./pages/payment";
+import AddToCart from "./pages/jumlahTiket";
 
 const router = createBrowserRouter([
   {
@@ -26,7 +28,15 @@ const router = createBrowserRouter([
   { path: "/signup", element: <Register /> },
   { path: "/signin", element: <LogIn /> },
   { path: "/event/:id", element: <DetailEventPage /> },
-  { path: "/profile", element: <Profile /> },
+  { path: "/profile", element: < Profile/> },
+  
+  {
+    path: "/payment",
+    element: <PaymentPage />
+  },
+  { path: "/tiket",
+element: <AddToCart/> 
+}
 ]);
 
 function App() {

@@ -14,7 +14,15 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Payment.init({
-    isPaid: DataTypes.BOOLEAN
+    isPaid: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+      
+    },
+    amount: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
+    }
   }, {
     sequelize,
     modelName: 'Payment',
