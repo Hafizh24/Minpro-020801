@@ -8,6 +8,7 @@ import {
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import banner from "../assets/banner-event.jpg";
+import avatar from "../assets/avatar.webp";
 
 export function EventsCard(props) {
   const { children } = props;
@@ -72,19 +73,13 @@ const Body = (props) => {
   );
 };
 
-const Footer = () => {
+const Footer = (props) => {
+  const { name, image } = props;
   return (
     <CardFooter className="border-t pt-4">
-      <button className="flex items-center">
-        {/* <Avatar alt="" size="sm" className=" bg-blue-gray-200 mr-2" /> */}
-        <Avatar
-          alt=""
-          size="sm"
-          src="https://source.unsplash.com/random/900×700/?people&1"
-          className="mr-2"
-        />
-        EO name
-      </button>
+      {/* <Avatar alt="" size="sm" className=" bg-blue-gray-200 mr-2" /> */}
+      <Avatar alt="" size="sm" src={image ? image : avatar} className="mr-2" />
+      {name}
     </CardFooter>
   );
 };

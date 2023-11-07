@@ -6,14 +6,16 @@ import {
   CardFooter,
 } from "@material-tailwind/react";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import banner from "../assets/banner-event.jpg";
-import avatar from "../assets/avatar.webp";
+import { useDispatch, useSelector } from "react-redux";
+import { setData } from "../redux/eventSlice";
 
 const DetailEventPage = () => {
   const { id } = useParams();
-  const [event, setEevent] = useState({});
+  const event = useSelector((state) => state.event.data);
+  const dispatch = useDispatch();
 
   const newDate = new Date(event.start_date).toLocaleDateString("en-GB", {
     day: "numeric",
@@ -25,7 +27,7 @@ const DetailEventPage = () => {
     try {
       await axios.get(`http://localhost:2000/events/${id}`).then((response) => {
         // console.log(response.data);
-        setEevent(response.data);
+        dispatch(setData(response.data));
       });
     } catch (error) {
       console.log(error);
@@ -142,7 +144,7 @@ const DetailEventPage = () => {
           <div className="right w-2/5">
             <Card className="ml-8 mt-6 w-96">
               <CardBody>
-                <Link to={"/jumlahTiket"}>
+                <Link to={"/tiket"}>
                   <Button
                     ripple={false}
                     fullWidth

@@ -9,7 +9,7 @@ const HomePageTabs = ({ city, setCity }) => {
 
   return (
     <>
-      <section className="mt-32">
+      <section className="mt-2">
         <div className="flex justify-center gap-x-4">
           {cities.map((value, index) => (
             <button
