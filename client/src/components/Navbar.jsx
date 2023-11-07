@@ -142,7 +142,7 @@ const Navbar = () => {
                 <MenuItem> Home </MenuItem>
               </Link>
               <Link to={"/"}>
-                <MenuItem onClick={handleLogout}> Log Out </MenuItem>
+                <MenuItem onClick={handleLogout}> Sign Out </MenuItem>
               </Link>
             </MenuList>
           </Menu>

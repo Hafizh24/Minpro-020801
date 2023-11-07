@@ -48,9 +48,6 @@ export const Register = () => {
       theme: "light",
     });
   const handleSubmit = async (data) => {
-    console.log("ini name", formik.values.name);
-    console.log("ini referral", referralCode);
-    data.referral = referralCode;
     try {
       console.log(data, "ini data");
       await axios.post("http://localhost:2000/users", data);
@@ -66,7 +63,7 @@ export const Register = () => {
       email: "",
       username: "",
       password: "",
-      // referral: referralCodeGenerator()
+      referral_code: "",
     },
     validationSchema: RegisterSchema,
     onSubmit: (values, action) => {
@@ -167,7 +164,9 @@ export const Register = () => {
                     {formik.errors.password}
                   </div>
                 ) : null}
-                <Input size="lg" label="Referral" name="referral" />
+                <Input size="lg" label="Referral" name="referral_code"
+                onChange={formik.handleChange}
+                value={formik.values.referral_code}/>
               </div>
               <Checkbox
                 label={
