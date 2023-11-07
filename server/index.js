@@ -13,9 +13,9 @@ app.get("/api", (req, res) => {
 });
 
 const { eventRouter } = require("./router");
-const {userRouter} = require ("./router");
+const { userRouter } = require("./router");
 app.use("/events", eventRouter);
-app.use("/users", userRouter)
+app.use("/users", userRouter);
 app.listen(PORT, () => {
   // db.sequelize.sync({ alter: true });
   // db.sequelize.sync({ force: true });

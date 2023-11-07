@@ -46,9 +46,12 @@ const Body = (props) => {
       currency: "IDR",
       minimumFractionDigits: 0,
     });
+    if (price == 0) {
+      newPrice = "free";
+    }
   }
 
-  // console.log(newPrice);
+  console.log(newPrice);
 
   return (
     <CardBody className="mb-10">
@@ -56,8 +59,14 @@ const Body = (props) => {
         {name}
       </Typography>
       <Typography className="mb-4 font-sans text-sm">{newDate}</Typography>
-      <Typography className="font-sans text-sm font-semibold text-blue-gray-900">
-        {newPrice}
+      <Typography
+        className={
+          newPrice
+            ? "font-sans text-sm font-semibold text-blue-gray-900"
+            : " font-sans text-base font-bold text-blue-gray-900"
+        }
+      >
+        {newPrice ? newPrice : "free"}
       </Typography>
     </CardBody>
   );

@@ -9,7 +9,6 @@ import axios from "axios";
 
 const ValidationSchema = Yup.object({
   eventName: Yup.string().required("Event Name is required"),
-  ticketName: Yup.string().required("Ticket Name is required"),
   category: Yup.string().required("Category is required"),
   ticketQuantity: Yup.number()
     .min(0, "Number of Tickets must be greater than or equal to 0")
@@ -20,7 +19,7 @@ const ValidationSchema = Yup.object({
   eventStartTime: Yup.string().required("Start Time is required"),
   eventEndTime: Yup.string().required("End Time is required"),
   venue: Yup.string().required("Place name is required"),
-  city: Yup.string().required("City is required"),
+  // city: Yup.string().required("City is required"),
   // dropzoneFile: Yup.mixed().test(
   //   "fileSize",
   //   "File size must be less than 3MB",
@@ -34,6 +33,7 @@ const ValidationSchema = Yup.object({
 });
 
 const CreateEventPage = () => {
+  const [selected, setSelected] = useState();
   const formik = useFormik({
     initialValues: {
       eventName: "",
@@ -43,41 +43,46 @@ const CreateEventPage = () => {
       eventStartTime: "",
       eventEndTime: "",
       venue: "",
-      city: "",
+      // city: "",
       description: "",
-      ticketName: "",
-      ticketQuantity: "",
+      ticketQuantity: 0,
       ticketPrice: "",
-      ticketStartDate: "",
-      ticketEndDate: "",
+      promotionStartDate: "",
+      promotionEndDate: "",
+      discount: 0,
+      quota: 0,
       file: null,
     },
     validationSchema: ValidationSchema,
     onSubmit: async (values, action) => {
-      alert(JSON.stringify(values, null, 2));
+      // alert(JSON.stringify(values, null, 2));
       // window.location.reload();
-      // try {
-      //   const data = new FormData();
-      //   data.append("eventName", values.eventName);
-      //   data.append("category", values.category);
-      //   data.append("eventStartDate", values.eventStartDate);
-      //   data.append("eventEndDate", values.eventEndDate);
-      //   data.append("eventStartTime", values.eventStartTime);
-      //   data.append("eventEndTime", values.eventEndTime);
-      //   data.append("venue", values.venue);
-      //   data.append("city", values.city);
-      //   data.append("description", values.description);
-      //   data.append("ticketName", values.ticketName);
-      //   data.append("ticketQuantity", values.ticketQuantity);
-      //   data.append("ticketPrice", values.ticketPrice);
-      //   data.append("file", values.file);
+      try {
+        const data = new FormData();
+        data.append("eventName", values.eventName);
+        data.append("category", values.category);
+        data.append("eventStartDate", values.eventStartDate);
+        data.append("eventEndDate", values.eventEndDate);
+        data.append("eventStartTime", values.eventStartTime);
+        data.append("eventEndTime", values.eventEndTime);
+        data.append("venue", values.venue);
+        // data.append("city", values.city);
+        data.append("city", selected);
+        data.append("description", values.description);
+        data.append("ticketQuantity", values.ticketQuantity);
+        data.append("ticketPrice", values.ticketPrice);
+        data.append("promotionStartDate", values.promotionStartDate);
+        data.append("promotionEndDate", values.promotionEndDate);
+        data.append("discount", values.discount);
+        data.append("quota", values.quota);
+        data.append("file", values.file);
 
-      //   await axios.post("http://localhost:2000/events", data);
+        await axios.post("http://localhost:2000/events", data);
 
-      //   alert("success upload");
-      // } catch (error) {
-      //   console.log(error);
-      // }
+        alert("success upload");
+      } catch (error) {
+        console.log(error);
+      }
     },
   });
 
@@ -90,7 +95,11 @@ const CreateEventPage = () => {
       <SimpleNavbar />
       <form onSubmit={formik.handleSubmit}>
         <div className="flex  flex-col items-center">
-          <EventCard formik={formik} />
+          <EventCard
+            formik={formik}
+            selected={selected}
+            setSelected={setSelected}
+          />
           <EventTabs formik={formik} />
 
           <Button

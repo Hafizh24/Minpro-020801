@@ -5,6 +5,5 @@ const { multerUpload } = require("../middleware/multer");
 router.get("/", eventController.getAll);
 router.get("/:id", eventController.getById);
 router.post("/", multerUpload().single("file"), eventController.createEvent);
-router.post("/upload", multerUpload().single("file"), eventController.testUpload);
 
 module.exports = router;

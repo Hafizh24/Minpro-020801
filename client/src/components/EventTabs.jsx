@@ -63,20 +63,6 @@ export function EventTabs({ formik }) {
           <div className=" flex flex-col gap-y-10">
             <Input
               variant="static"
-              label="Ticket Name"
-              name="ticketName"
-              value={formik.values.ticketName}
-              onChange={formik.handleChange}
-            />
-
-            {formik.errors.ticketName && formik.touched.ticketName && (
-              <p className=" font-normal text-red-300">
-                {formik.errors.ticketName}
-              </p>
-            )}
-
-            <Input
-              variant="static"
               label="Number of Tickets"
               type="number"
               min={0}
@@ -136,8 +122,8 @@ export function EventTabs({ formik }) {
               <>
                 <Input
                   onChange={formik.handleChange}
-                  name="ticketStartDate"
-                  value={formik.values.ticketStartDate}
+                  name="promotionStartDate"
+                  value={formik.values.promotionStartDate}
                   label="Start Date"
                   size="lg"
                   variant="static"
@@ -145,8 +131,8 @@ export function EventTabs({ formik }) {
                 />
                 <Input
                   onChange={formik.handleChange}
-                  name="ticketEndDate"
-                  value={formik.values.ticketEndDate}
+                  name="promotionEndDate"
+                  value={formik.values.promotionEndDate}
                   label="End Date"
                   size="lg"
                   variant="static"

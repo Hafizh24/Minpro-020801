@@ -9,20 +9,14 @@ import {
 import ButtonEvent from "./ButtonEvent";
 import { useSelector } from "react-redux";
 import avatar from "../assets/avatar.webp";
+import Autocomplete from "./Autocomplete";
 
-const EventCard = ({ formik, setFile }) => {
+const EventCard = ({ formik, setFile, selected, setSelected }) => {
   const [picture, setPicture] = useState(false);
 
-  const categories = useSelector((state) => state.event.category);
+  const user = useSelector((state) => state.user.value);
 
-  // const upload = async () => {
-  //   const formData = new FormData();
-  //   formData.append("file", file);
-  //   await axios
-  //     .post("http://localhost:2000/events/upload", formData)
-  //     .then((res) => {})
-  //     .catch((err) => console.log(err));
-  // };
+  const categories = useSelector((state) => state.event.category);
 
   const handleChangeImage = (e) => {
     // const files = e.target.files[0];
@@ -33,8 +27,6 @@ const EventCard = ({ formik, setFile }) => {
 
     // setPicture(pic);
     formik.setFieldValue("file", e.currentTarget.files[0]);
-
-    // formik.setFieldValue("dropzoneFile", e.target.files[0]);
   };
   return (
     <>
@@ -121,6 +113,8 @@ const EventCard = ({ formik, setFile }) => {
           {formik.errors.category && formik.touched.category && (
             <p className=" text-red-300">{formik.errors.category}</p>
           )}
+
+          <Autocomplete selected={selected} setSelected={setSelected} />
           {/* <div>
             <input type="file" onChange={(e) => setFile(e.target.files[0])} />
             <button type="button" onClick={upload}>
@@ -132,12 +126,13 @@ const EventCard = ({ formik, setFile }) => {
           <div className="flex justify-start gap-x-28">
             <div>
               <h1>Hosted by</h1>
-              <div className="mt-2 flex items-center justify-center">
+              <div className="mt-2 flex items-center justify-center gap-x-2">
                 <img
-                  src={avatar}
+                  src={user.image ? user.image : avatar}
                   alt=""
                   className=" h-12 w-12 rounded-full border shadow-md"
                 />
+                <span>{user?.username}</span>
               </div>
             </div>
             <div>

@@ -22,7 +22,7 @@ const HomePage = () => {
         .get(`http://localhost:2000/events?city=${city}`)
         .then((response) => {
           console.log(response.data);
-          setData(response.data);
+          setData(response?.data);
         });
     } catch (error) {
       console.log(error);

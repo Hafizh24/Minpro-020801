@@ -117,7 +117,7 @@ module.exports = {
       }
 
       const payload = { id: user.id };
-      const token = jwt.sign(payload, "LogIn", { expiresIn: "30m" });
+      const token = jwt.sign(payload, "LogIn");
 
       console.log("ini user", user);
 

@@ -1,6 +1,8 @@
 const db = require("../models");
 const Event = db.Event;
 const Ticket = db.Ticket;
+const User = db.User;
+const Promotion = db.Promotion;
 
 module.exports = {
   getAll: async (req, res) => {
@@ -16,11 +18,11 @@ module.exports = {
             },
           ],
         });
-        res.status(200).send(result);
+        return res.status(200).send(result);
       }
 
       const result = await Event.findAll({ include: Ticket });
-      res.status(200).send(result);
+      return res.status(200).send(result);
     } catch (err) {
       console.log(err);
       res.status(400).send({ message: err.message });
@@ -33,6 +35,11 @@ module.exports = {
         where: {
           id: req.params.id,
         },
+        include: [
+          {
+            model: User,
+          },
+        ],
       });
       res.status(200).send(result);
     } catch (error) {
@@ -52,19 +59,20 @@ module.exports = {
       venue,
       city,
       desciption,
-      ticketName,
       ticketQuantity,
       ticketPrice,
+      promotionStartDate,
+      promotionEndDate,
+      quota,
+      discount,
     } = req.body;
     try {
-      console.log(req.banner, ">>>>>banner");
-      console.log(req.file, ">>>>>file");
-      // console.log(banner);
       const event = await Event.create({
         name: eventName,
-        desciption: desciption,
-        venue: venue,
-        city: city,
+        desciption,
+        category,
+        venue,
+        city,
         image_url: req.file?.path,
         start_date: eventStartDate,
         end_date: eventEndDate,
@@ -73,18 +81,23 @@ module.exports = {
       });
 
       const ticket = await Ticket.create({
-        name: ticketName,
         total_stock: ticketQuantity,
         price: ticketPrice,
         EventId: event.id,
       });
+
+      const promotion = await Promotion.create({
+        start_date: promotionStartDate,
+        end_date: promotionEndDate,
+        quota,
+        discount,
+        EventId: event.id,
+      });
+
       res.status(200).send({ message: "Success Create Event", ticket: ticket, event, event });
     } catch (err) {
       console.log(err);
       res.status(400).send({ message: err.message });
     }
-  },
-  testUpload: (req, res) => {
-    console.log(req.file);
   },
 };
