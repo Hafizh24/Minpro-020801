@@ -7,21 +7,50 @@ const Promotion = db.Promotion;
 module.exports = {
   getAll: async (req, res) => {
     try {
-      const { city } = req.query;
+      const { city, category } = req.query;
 
       if (city) {
         const result = await Event.findAll({
           where: { city: city },
+          order: [["start_date", "ASC"]],
           include: [
             {
               model: Ticket,
+            },
+            {
+              model: User,
+            },
+          ],
+        });
+        return res.status(200).send(result);
+      }
+      if (category) {
+        const result = await Event.findAll({
+          where: { category: category },
+          order: [["start_date", "ASC"]],
+          include: [
+            {
+              model: Ticket,
+            },
+            {
+              model: User,
             },
           ],
         });
         return res.status(200).send(result);
       }
 
-      const result = await Event.findAll({ include: Ticket });
+      const result = await Event.findAll({
+        order: [["start_date", "ASC"]],
+        include: [
+          {
+            model: Ticket,
+          },
+          {
+            model: User,
+          },
+        ],
+      });
       return res.status(200).send(result);
     } catch (err) {
       console.log(err);
@@ -38,6 +67,9 @@ module.exports = {
         include: [
           {
             model: User,
+          },
+          {
+            model: Ticket,
           },
         ],
       });

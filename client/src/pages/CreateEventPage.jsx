@@ -46,7 +46,7 @@ const CreateEventPage = () => {
       // city: "",
       description: "",
       ticketQuantity: 0,
-      ticketPrice: "",
+      ticketPrice: 0,
       promotionStartDate: "",
       promotionEndDate: "",
       discount: 0,
