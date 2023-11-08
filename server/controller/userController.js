@@ -1,9 +1,9 @@
-const db = require('../models')
-const User = db.User
-const Referral = db.Referral
-const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
-const {Op} = require('sequelize')
+const db = require("../models");
+const User = db.User;
+const Referral = db.Referral;
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const { Op } = require("sequelize");
 
 module.exports = {
     register: async (req, res) => {
@@ -28,20 +28,17 @@ module.exports = {
                 }
               };
 
-              const referral = referralCodeGenerator(name)
-              console.log(referral);
-            
-            const test = await User.findOne({
-                where:{
-                    [Op.or]:[
-                        {username:username},
-                        {email:email}
-                    ]
-                }
-            })
-            if(!test){
-                const salt = await bcrypt.genSalt(10)
-                const hashPassword = await bcrypt.hash(password, salt)
+      const referral = referralCodeGenerator(name);
+      console.log(referral);
+
+      const test = await User.findOne({
+        where: {
+          [Op.or]: [{ username: username }, { email: email }],
+        },
+      });
+      if (!test) {
+        const salt = await bcrypt.genSalt(10);
+        const hashPassword = await bcrypt.hash(password, salt);
 
                 const result = await User.create({
                     name: name,
@@ -123,7 +120,7 @@ module.exports = {
             const payload = { id: user.id }
             const token = jwt.sign(payload, 'LogIn')
 
-            console.log("ini user", user);
+      console.log("ini user", user);
 
             res.status(200).send({
                 message: "login success",

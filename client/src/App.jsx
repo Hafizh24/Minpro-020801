@@ -12,6 +12,8 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import Required from "./components/required";
 import ProfileSetting from "./pages/ProfilePage";
+import PaymentPage from "./pages/payment";
+import AddToCart from "./pages/jumlahTiket";
 import ProfileCard from "./pages/ProfileCard";
 
 
@@ -33,6 +35,12 @@ const router = createBrowserRouter([
       { path: "/profile-setting", element: <ProfileSetting />}
     ]
   }
+
+  {
+    path: "/payment",
+    element: <PaymentPage />,
+  },
+  { path: "/tiket", element: <AddToCart /> },
 ]);
 
 function App() {
@@ -46,7 +54,7 @@ function App() {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
       console.log("ini rsponese", response);
       dispatch(setData(response.data));

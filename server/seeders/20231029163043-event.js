@@ -3,12 +3,13 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.bulkInsert("Events", [
+    return await queryInterface.bulkInsert("Events", [
       {
         name: "Festival Good",
         description:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eget nunc lobortis mattis aliquam faucibus purus in massa tempor. Diam in arcu cursus euismod quis viverra nibh cras pulvinar. Pellentesque sit amet porttitor eget dolor morbi non arcu. Convallis a cras semper auctor neque vitae tempus.",
         venue: "Braga",
+        category: "Festivals",
         city: "Bandung",
         image_url: "https://source.unsplash.com/random/900×700/?event&1",
         start_date: "2023-11-08",
@@ -22,6 +23,7 @@ module.exports = {
         name: "Jakarta Fair",
         description: "",
         venue: "Kemayoran",
+        category: "Festivals",
         city: "Jakarta",
         image_url: "https://source.unsplash.com/random/900×700/?event&3",
         start_date: "2023-11-11",
@@ -36,6 +38,7 @@ module.exports = {
         description:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eget nunc lobortis mattis aliquam faucibus purus in massa tempor. Diam in arcu cursus euismod quis viverra nibh cras pulvinar. Pellentesque sit amet porttitor eget dolor morbi non arcu. Convallis a cras semper auctor neque vitae tempus.",
         venue: "Arcadaz",
+        category: "Festivals",
         city: "Yogyakarta",
         image_url: "",
         start_date: "2023-11-18",
@@ -50,6 +53,7 @@ module.exports = {
         description:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Facilisi etiam dignissim diam quis enim lobortis. Et tortor at risus viverra adipiscing at in tellus. Viverra suspendisse potenti nullam ac tortor. Nunc id cursus metus aliquam eleifend. Et tortor consequat id porta nibh venenatis cras.",
         venue: "Jakarta Convention Center",
+        category: "Festivals",
         city: "Jakarta",
         image_url: "https://source.unsplash.com/random/900×700/?event&4",
         start_date: "2023-11-12",
@@ -64,6 +68,7 @@ module.exports = {
         description:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar elementum integer enim neque volutpat ac tincidunt vitae semper. Id ornare arcu odio ut sem. Risus commodo viverra maecenas accumsan lacus vel facilisis volutpat est. Etiam erat velit scelerisque in dictum non consectetur a erat. Ut consequat semper viverra nam libero justo laoreet sit amet. Semper auctor neque vitae tempus quam.",
         venue: "Kemang",
+        category: "Festivals",
         city: "Jakarta",
         image_url: "https://source.unsplash.com/random/900×700/?event&5",
         start_date: "2023-11-22",
@@ -78,6 +83,7 @@ module.exports = {
         description:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dignissim sodales ut eu sem integer vitae justo. Mauris pellentesque pulvinar pellentesque habitant morbi tristique.",
         venue: "Dago",
+        category: "Concert",
         city: "Bandung",
         image_url: "https://source.unsplash.com/random/900×700/?event&6",
         start_date: "2023-11-11",
@@ -91,6 +97,7 @@ module.exports = {
         name: "MLBB Bandung Cup",
         description: "",
         venue: "Bandung Electronic Centre",
+        category: "Festivals",
         city: "Bandung",
         image_url: "",
         start_date: "2023-11-28",
@@ -101,9 +108,10 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        name: "Indie Festival",
+        name: "Yogya Festival",
         description: "",
         venue: "Std. Kridosono",
+        category: "Festivals",
         city: "Yogyakarta",
         image_url: "https://source.unsplash.com/random/900×700/?event&7",
         start_date: "2023-11-24",
@@ -114,10 +122,11 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        name: "Indie Festival",
+        name: "Book Club",
         description:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vehicula ipsum a arcu cursus vitae. Sed vulputate mi sit amet mauris commodo quis imperdiet massa. Ut sem nulla pharetra diam sit amet nisl. Senectus et netus et malesuada. Sit amet facilisis magna etiam tempor orci eu lobortis. Odio ut enim blandit volutpat maecenas volutpat blandit. Praesent elementum facilisis leo vel. Facilisi morbi tempus iaculis urna.",
         venue: "Universitas Sarjanawiyata Tamansiswa",
+        category: "Seminars",
         city: "Yogyakarta",
         image_url: "",
         start_date: "2023-11-24",
@@ -127,10 +136,25 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        name: "JabFest",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vehicula ipsum a arcu cursus vitae. Sed vulputate mi sit amet mauris commodo quis imperdiet massa. Ut sem nulla pharetra diam sit amet nisl. Senectus et netus et malesuada. Sit amet facilisis magna etiam tempor orci eu lobortis. Odio ut enim blandit volutpat maecenas volutpat blandit. Praesent elementum facilisis leo vel. Facilisi morbi tempus iaculis urna.",
+        venue: "PUSDAI",
+        category: "Festivals",
+        city: "Bandung",
+        image_url: "",
+        start_date: "2023-12-24",
+        end_date: "2023-12-24",
+        start_time: "17:00",
+        end_time: "23:00",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     ]);
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete("Events,", null, {});
+    return await queryInterface.bulkDelete("Events,", null, {});
   },
 };

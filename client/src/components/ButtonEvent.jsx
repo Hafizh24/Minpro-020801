@@ -56,7 +56,6 @@ const ButtonEvent = ({
               size="lg"
               variant="static"
               type={type}
-              onBlur={formik.handleBlur}
               error={error1}
             />
             <Input
@@ -67,7 +66,6 @@ const ButtonEvent = ({
               size="lg"
               variant="static"
               type={type}
-              onBlur={formik.handleBlur}
               error={error2}
             />
           </CardBody>

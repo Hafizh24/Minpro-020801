@@ -33,23 +33,23 @@ const Navbar = () => {
     window.location.reload();
   };
   return (
-    <nav className="bg-primary-500 pb-4 px-4 pt-4 flex justify-between items-center sticky">
+    <nav className="sticky flex items-center justify-between bg-primary-500 px-4 pb-4 pt-4">
       <div className="flex">
         <Link to={"/"}>
-          <h1 className="text-orange-400 font-bold text-left text-4xl italic mr-8 font-roboto">
+          <h1 className="mr-8 text-left font-roboto text-4xl font-bold italic text-orange-400">
             Karcis
           </h1>
         </Link>
       </div>
       <div className="flex gap-x-10 md:gap-x-4">
         <Link to="/create-event">
-          <button className="flex gap-x-1 text-base items-center text-blue-gray-900">
+          <button className="flex items-center gap-x-1 text-base text-blue-gray-900">
             <span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
-                className="w-6 h-6 fill-none stroke-blue-gray-900"
+                className="h-6 w-6 fill-none stroke-blue-gray-900"
               >
                 <path
                   strokeLinecap="round"
@@ -61,8 +61,8 @@ const Navbar = () => {
             Create Events
           </button>
         </Link>
-        <Link to="/">
-          <button className="flex gap-x-1 text-base items-center text-blue-gray-900">
+        <Link to="/discovery">
+          <button className="flex items-center gap-x-1 text-base text-blue-gray-900">
             <span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -76,13 +76,13 @@ const Navbar = () => {
           </button>
         </Link>
       </div>
-      <div className="flex gap-x-6 mr-8">
+      <div className="mr-8 flex gap-x-6">
         {!id ? (
           <div>
             <Link to="/signin">
               <button
                 className={
-                  "inline border py-2 px-4 rounded-full border-brown-200 text-blue-gray-900"
+                  "inline rounded-full border border-brown-200 px-4 py-2 text-blue-gray-900"
                 }
               >
                 Sign In
@@ -91,7 +91,7 @@ const Navbar = () => {
             <Link to="/signup">
               <button
                 className={
-                  " border bg-brown-100 rounded-full py-2 px-4 border-brown-200 text-blue-gray-900"
+                  " rounded-full border border-brown-200 bg-brown-100 px-4 py-2 text-blue-gray-900"
                 }
               >
                 Sign Up
@@ -103,7 +103,7 @@ const Navbar = () => {
           <Menu>
             <MenuHandler>
               <Button
-                className="rounded-full w-fit"
+                className="w-fit rounded-full"
                 // onClick={handleLogout}
                 // className={
                 // " border bg-brown-100 rounded-full py-2 px-4 border-brown-200 text-blue-gray-900"

@@ -6,13 +6,17 @@ import {
   CardFooter,
 } from "@material-tailwind/react";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import banner from "../assets/banner-event.jpg";
+import { useDispatch, useSelector } from "react-redux";
+import { setData } from "../redux/eventSlice";
 
 const DetailEventPage = () => {
   const { id } = useParams();
-  const [event, setEevent] = useState({});
+  const event = useSelector((state) => state.event.data);
+  const dispatch = useDispatch();
+
   const newDate = new Date(event.start_date).toLocaleDateString("en-GB", {
     day: "numeric",
     month: "short",
@@ -23,7 +27,7 @@ const DetailEventPage = () => {
     try {
       await axios.get(`http://localhost:2000/events/${id}`).then((response) => {
         // console.log(response.data);
-        setEevent(response.data);
+        dispatch(setData(response.data));
       });
     } catch (error) {
       console.log(error);
@@ -40,7 +44,11 @@ const DetailEventPage = () => {
         <div className="content-top mb-12 flex flex-col justify-center gap-x-12 laptop:mt-7 laptop:flex-row">
           <div className="banner">
             <img
-              src={event.image_url ? event.image_url : banner}
+              src={
+                event.image_url
+                  ? `http://localhost:2000/${event.image_url}`
+                  : banner
+              }
               alt=""
               className=" h-40 w-[380px] rounded-md shadow-lg laptop:h-[250px] laptop:w-[650px]"
             />
@@ -105,11 +113,16 @@ const DetailEventPage = () => {
               </CardBody>
               <CardFooter className="flex gap-x-5 border-t pt-6">
                 <div className="avatar">
-                  <Avatar alt="" size="sm" className=" mr-2 bg-blue-gray-200" />
+                  <Avatar
+                    alt=""
+                    size="sm"
+                    // src={event.User.img_url ? event.User.img_url : avatar}
+                    className=" mr-2 bg-blue-gray-200"
+                  />
                 </div>
                 <div className="name">
                   <span className=" text-gray-500">Hosted by</span>
-                  <p></p>
+                  <p>{event.User?.username}</p>
                 </div>
               </CardFooter>
             </Card>
@@ -131,7 +144,7 @@ const DetailEventPage = () => {
           <div className="right w-2/5">
             <Card className="ml-8 mt-6 w-96">
               <CardBody>
-                <Link to={"/payment"}>
+                <Link to={"/tiket"}>
                   <Button
                     ripple={false}
                     fullWidth
