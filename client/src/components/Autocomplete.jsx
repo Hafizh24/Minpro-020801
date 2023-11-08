@@ -5,11 +5,11 @@ import { useFormik } from "formik";
 import { useSelector } from "react-redux";
 
 const Autocomplete = ({ selected, setSelected }) => {
-  const data = useSelector((state) => state.event.cities);
+  const data = useSelector((state) => state.event.city);
 
   const [query, setQuery] = useState("");
 
-  console.log(selected);
+  // console.log(selected);
 
   const filteredCities =
     query === ""

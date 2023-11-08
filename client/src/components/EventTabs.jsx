@@ -102,8 +102,8 @@ export function EventTabs({ formik }) {
                 value={formik.values.ticketPrice}
                 onChange={formik.handleChange}
                 type="number"
-                min={10000}
-                max={100000000000}
+                min={0}
+                max={1000000}
               />
             )}
 
@@ -156,7 +156,7 @@ export function EventTabs({ formik }) {
                   value={formik.values.quota}
                   onChange={formik.handleChange}
                   min="0"
-                  max="1000"
+                  max="100"
                 />
               </>
             ) : null}
@@ -165,7 +165,7 @@ export function EventTabs({ formik }) {
         <TabPanel value={"Desciption"}>
           <Textarea
             rows={8}
-            placeholder="Event Desciption"
+            label="Event Description"
             name="description"
             onChange={formik.handleChange}
             value={formik.values.description}

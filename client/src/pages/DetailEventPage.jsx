@@ -10,7 +10,7 @@ import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import banner from "../assets/banner-event.jpg";
 import { useDispatch, useSelector } from "react-redux";
-import { setData } from "../redux/eventSlice";
+import { setData, setValue } from "../redux/eventSlice";
 
 const DetailEventPage = () => {
   const { id } = useParams();
@@ -26,7 +26,7 @@ const DetailEventPage = () => {
   const fetchApi = async () => {
     try {
       await axios.get(`http://localhost:2000/events/${id}`).then((response) => {
-        // console.log(response.data);
+        console.log(response.data);
         dispatch(setData(response.data));
       });
     } catch (error) {

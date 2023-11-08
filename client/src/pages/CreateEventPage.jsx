@@ -6,6 +6,8 @@ import { Button } from "@material-tailwind/react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const ValidationSchema = Yup.object({
   eventName: Yup.string().required("Event Name is required"),
@@ -34,6 +36,19 @@ const ValidationSchema = Yup.object({
 
 const CreateEventPage = () => {
   const [selected, setSelected] = useState();
+  const token = localStorage.getItem("token");
+  const navigate = useNavigate();
+  const notify = () =>
+    toast.success("Success Create Event!", {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   const formik = useFormik({
     initialValues: {
       eventName: "",
@@ -77,12 +92,22 @@ const CreateEventPage = () => {
         data.append("quota", values.quota);
         data.append("file", values.file);
 
-        await axios.post("http://localhost:2000/events", data);
+        await axios.post("http://localhost:2000/events", data, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
-        alert("success upload");
+        action.resetForm();
+
+        // window.location.reload();
       } catch (error) {
         console.log(error);
       }
+      notify();
+      // const nav = navigate("/");
+      // const myTimeout = setTimeout(nav, 5000);
+      setTimeout(() => navigate("/"), 7000);
     },
   });
 
@@ -111,6 +136,7 @@ const CreateEventPage = () => {
           >
             Create an Event
           </Button>
+          <ToastContainer />
         </div>
       </form>
     </>

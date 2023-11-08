@@ -7,7 +7,9 @@ const Promotion = db.Promotion;
 module.exports = {
   getAll: async (req, res) => {
     try {
-      const { city, category } = req.query;
+      const { city, category, limit } = req.query;
+      // console.log(limit, ">>>>>>>limit");
+      // console.log(typeof Number(limit), ">>>>>>>>>>>>>>>type");
 
       if (city) {
         const result = await Event.findAll({
@@ -36,6 +38,21 @@ module.exports = {
               model: User,
             },
           ],
+        });
+        return res.status(200).send(result);
+      }
+      if (limit) {
+        const result = await Event.findAll({
+          order: [["start_date", "ASC"]],
+          include: [
+            {
+              model: Ticket,
+            },
+            {
+              model: User,
+            },
+          ],
+          limit: Number(limit),
         });
         return res.status(200).send(result);
       }
@@ -110,6 +127,7 @@ module.exports = {
         end_date: eventEndDate,
         start_time: eventStartTime,
         end_time: eventEndTime,
+        UserId: req.user.id,
       });
 
       const ticket = await Ticket.create({

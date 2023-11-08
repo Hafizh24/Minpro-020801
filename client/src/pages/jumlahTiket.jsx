@@ -13,7 +13,6 @@ import { addCount, addData } from "../redux/transactionSlice";
 import { useNavigate } from "react-router-dom";
 
 const AddToCart = () => {
-  const [data, setData] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [count, setCount] = useState(0);
   const dispatch = useDispatch();
@@ -29,8 +28,8 @@ const AddToCart = () => {
   useEffect(() => {}, [event]);
 
   return (
-    <div className="flex flex-col items-center gap-2 px-4 py-4 laptop:flex-row justify-center">
-      <div className="flex flex-col p-2 gap-4">
+    <div className="flex flex-col items-center justify-center gap-2 px-4 py-4 laptop:flex-row">
+      <div className="flex flex-col gap-4 p-2">
         <TicketsCard key={event.id}>
           <TicketsCard.Body name={event.name} />
           <TicketsCard.Footer
@@ -42,7 +41,7 @@ const AddToCart = () => {
         </TicketsCard>
       </div>
       <div className="gap-2 px-4 py-2">
-        <Card className="border-solid border-2 border-gray-300  w-80">
+        <Card className="w-80 border-2 border-solid  border-gray-300">
           <CardBody>
             <Typography color="blue-gray" className="font-medium">
               Harap Memilih Tiket Terlebih Dahulu

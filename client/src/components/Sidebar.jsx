@@ -15,13 +15,24 @@ import {
   UserCircleIcon,
 } from "@heroicons/react/24/solid";
 import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
+import { useSelector } from "react-redux";
 
-const Sidebar = () => {
+const Sidebar = ({ setCity, setCategory }) => {
   const [open, setOpen] = useState(0);
+  const categories = useSelector((state) => state.event.category);
+  const cities = useSelector((state) => state.event.city);
 
   const handleOpen = (value) => {
     setOpen(open === value ? 0 : value);
   };
+
+  const handleClickCity = (value) => {
+    setCity(value);
+  };
+  const handleClickCategory = (value) => {
+    setCategory(value);
+  };
+
   return (
     <>
       <Card className="h-[calc(100vh-2rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
@@ -40,9 +51,13 @@ const Sidebar = () => {
                   open === 1 ? "rotate-180" : ""
                 }`}
               />
-            }>
+            }
+          >
             <ListItem className="p-0" selected={open === 1}>
-              <AccordionHeader onClick={() => handleOpen(1)} className="border-b-0 p-3">
+              <AccordionHeader
+                onClick={() => handleOpen(1)}
+                className="border-b-0 p-3"
+              >
                 <ListItemPrefix>
                   <PresentationChartBarIcon className="h-5 w-5" />
                 </ListItemPrefix>
@@ -53,24 +68,19 @@ const Sidebar = () => {
             </ListItem>
             <AccordionBody className="py-1">
               <List className="p-0">
-                <ListItem>
-                  <ListItemPrefix>
-                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                  </ListItemPrefix>
-                  Bandung
-                </ListItem>
-                <ListItem>
-                  <ListItemPrefix>
-                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                  </ListItemPrefix>
-                  Jakarta
-                </ListItem>
-                <ListItem>
-                  <ListItemPrefix>
-                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                  </ListItemPrefix>
-                  Bali
-                </ListItem>
+                {cities.map((city, index) => (
+                  <ListItem
+                    key={index}
+                    onClick={() => {
+                      handleClickCity(city);
+                    }}
+                  >
+                    <ListItemPrefix>
+                      <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                    </ListItemPrefix>
+                    {city}
+                  </ListItem>
+                ))}
               </List>
             </AccordionBody>
           </Accordion>
@@ -83,9 +93,13 @@ const Sidebar = () => {
                   open === 2 ? "rotate-180" : ""
                 }`}
               />
-            }>
+            }
+          >
             <ListItem className="p-0" selected={open === 2}>
-              <AccordionHeader onClick={() => handleOpen(2)} className="border-b-0 p-3">
+              <AccordionHeader
+                onClick={() => handleOpen(2)}
+                className="border-b-0 p-3"
+              >
                 <ListItemPrefix>
                   <ShoppingBagIcon className="h-5 w-5" />
                 </ListItemPrefix>
@@ -96,28 +110,22 @@ const Sidebar = () => {
             </ListItem>
             <AccordionBody className="py-1">
               <List className="p-0">
-                <ListItem>
-                  <ListItemPrefix>
-                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                  </ListItemPrefix>
-                  Music
-                </ListItem>
-                <ListItem>
-                  <ListItemPrefix>
-                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                  </ListItemPrefix>
-                  Business
-                </ListItem>
+                {categories.map((category, index) => (
+                  <ListItem
+                    key={index}
+                    onClick={() => {
+                      handleClickCategory(category);
+                    }}
+                  >
+                    <ListItemPrefix>
+                      <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                    </ListItemPrefix>
+                    {category}
+                  </ListItem>
+                ))}
               </List>
             </AccordionBody>
           </Accordion>
-          <hr className="my-2 border-blue-gray-50" />
-          <ListItem>
-            <ListItemPrefix>
-              <UserCircleIcon className="h-5 w-5" />
-            </ListItemPrefix>
-            Price
-          </ListItem>
         </List>
       </Card>
     </>

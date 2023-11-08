@@ -10,23 +10,33 @@ import ButtonEvent from "./ButtonEvent";
 import { useSelector } from "react-redux";
 import avatar from "../assets/avatar.webp";
 import Autocomplete from "./Autocomplete";
+import ModalLocation from "./ModalLocation";
+import { ToastContainer, toast } from "react-toastify";
 
 const EventCard = ({ formik, setFile, selected, setSelected }) => {
-  const [picture, setPicture] = useState(false);
-
   const user = useSelector((state) => state.user.value);
 
   const categories = useSelector((state) => state.event.category);
+  const notify = () =>
+    toast.success("Upload Success!", {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
 
   const handleChangeImage = (e) => {
     // const files = e.target.files[0];
     // console.log(files);
     // const pic = URL.createObjectURL(file);
 
-    // setFile(files);
-
     // setPicture(pic);
     formik.setFieldValue("file", e.currentTarget.files[0]);
+    notify();
   };
   return (
     <>
@@ -76,6 +86,7 @@ const EventCard = ({ formik, setFile, selected, setSelected }) => {
             ) : null}
           </div>
           <br />
+          <ToastContainer />
         </CardHeader>
 
         <CardBody>
@@ -114,7 +125,6 @@ const EventCard = ({ formik, setFile, selected, setSelected }) => {
             <p className=" text-red-300">{formik.errors.category}</p>
           )}
 
-          <Autocomplete selected={selected} setSelected={setSelected} />
           {/* <div>
             <input type="file" onChange={(e) => setFile(e.target.files[0])} />
             <button type="button" onClick={upload}>
@@ -219,7 +229,7 @@ const EventCard = ({ formik, setFile, selected, setSelected }) => {
             <div className="flex flex-col">
               <h1>Location</h1>
 
-              <ButtonEvent
+              {/* <ButtonEvent
                 formik={formik}
                 title={"Select Location"}
                 header={"event location"}
@@ -253,7 +263,13 @@ const EventCard = ({ formik, setFile, selected, setSelected }) => {
                     />
                   </svg>
                 }
+              /> */}
+              <ModalLocation
+                formik={formik}
+                selected={selected}
+                setSelected={setSelected}
               />
+
               {formik.errors.venue && formik.touched.venue && (
                 <p className=" text-red-300">{formik.errors.venue}</p>
               )}
