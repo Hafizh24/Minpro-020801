@@ -12,10 +12,9 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setData } from "../redux/userSlice";
 import React, { useState, useRef } from "react";
-import { current } from "@reduxjs/toolkit";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Verification } from "./verifikasi";
+
 
 const RegisterSchema = Yup.object({
   name: Yup.string().required("name is required"),
@@ -33,13 +32,12 @@ export const Register = () => {
   const navigate = useNavigate();
   const [showErrorOutline, setShowErrorOutline] = useState(false);
   const [username, setUsername] = useState(""); // State untuk menyimpan nama pengguna
-  const [referralCode, setReferralCode] = useState("");
   const dataReferral = useRef();
 
   const notify = () =>
     toast.success("Register Success!", {
       position: "top-right",
-      autoClose: 5000,
+      autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -75,34 +73,22 @@ export const Register = () => {
 
   return (
     <>
-      {/* <div className="grid grid-cols-2"> */}
-      {/* <div className="colspan-1 ml-10 pt-16">
-          <h1 className="text-orange-400 font-bold text-left text-4xl italic mr-8 font-roboto">
-            Karcis.com
-          </h1>
-          <p> Crying real tears dk what to do</p>
-        </div> */}
-      <div className="min-h-screen flex item-center justify-center bg-center lg:h-screen lg:bg-none pr-20 pt-20 tablet laptop">
-        {/* <div className="flex item-center">
-            <h1 className="text-orange-400 font-bold text-left italic mr-8 font-roboto">
-              {" "}
-            </h1>
-          </div> */}
+      <div className=" bg-gray-0 min-h-screen flex item-center justify-center bg-center lg:h-screen lg:bg-none pr-20 pt-20 laptop">
         <div className="flex item-center justify-center">
           <Card color="transparent" shadow={false}>
             <Typography
               variant="h4"
               color="blue-gray"
-              className="hover:text-orange-400"
+              className="hover:text-orange-400 ml-14"
             >
               Sign Up
             </Typography>
-            <Typography color="gray" className="mt-1 font-normal">
+            <Typography color="gray" className="mt-1 ml-14 font-normal">
               Enter your details to register.
             </Typography>
             <form
               onSubmit={formik.handleSubmit}
-              className="mt-6 mb-2 w-80 max-w-screen-lg sm:w-96"
+              className="mt-6 mb-2 ml-14 w-80 max-w-screen-lg sm:w-96"
             >
               <div className="mb-3 flex flex-col gap-4">
                 <Input
@@ -168,28 +154,7 @@ export const Register = () => {
                 onChange={formik.handleChange}
                 value={formik.values.referral_code}/>
               </div>
-              <Checkbox
-                label={
-                  <Typography
-                    variant="small"
-                    color="gray"
-                    className="flex items-center font-normal text-gray-700"
-                  >
-                    I agree with the
-                    <a
-                      href="#"
-                      className="font-medium transition-colors text-gray-900 hover:text-orange-400"
-                    >
-                      &nbsp;Terms and Conditions
-                    </a>
-                  </Typography>
-                }
-                containerProps={{ className: "-ml-2.5" }}
-              />
               <Button
-                // onClick={() => {
-                //   referralCodeGenerator();
-                // }}
                 type="submit"
                 className="mt-6 bg-orange-400 text-black text-sm"
                 fullWidth

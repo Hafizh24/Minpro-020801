@@ -40,28 +40,6 @@ const Navbar = () => {
             Karcis
           </h1>
         </Link>
-        <label className="relative block ml-8">
-          <span className="absolute inset-y-0 left-0 flex items-center pl-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="w-5 h-5 fill-none"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-              />
-            </svg>
-          </span>
-          <input
-            placeholder="Search events"
-            type="text"
-            className="rounded-full w-[27rem] px-8 py-2 shadow-lg"
-          />
-        </label>
       </div>
       <div className="flex gap-x-10 md:gap-x-4">
         <Link to="/create-event">
@@ -138,8 +116,8 @@ const Navbar = () => {
               <Link to={"/profile"}>
                 <MenuItem> My Profile </MenuItem>
               </Link>
-              <Link to={"/"}>
-                <MenuItem> Home </MenuItem>
+              <Link to={"/discovery"}>
+                <MenuItem> Discovery </MenuItem>
               </Link>
               <Link to={"/"}>
                 <MenuItem onClick={handleLogout}> Sign Out </MenuItem>

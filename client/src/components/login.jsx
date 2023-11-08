@@ -3,29 +3,29 @@ import { useFormik } from "formik";
 import {
   Card,
   Input,
-  Checkbox,
   Button,
   Typography,
 } from "@material-tailwind/react";
 import * as Yup from "yup";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"
 const ValidationSchema = Yup.object({
-  // email: Yup.string()
-  //   .required("Email is required")
-  //   .email("Invalid email format"),
   password: Yup.string().min(8, "Minimum 8 characters"),
 });
 
-function validateInput(input) {
-  // Check if the input contains an "@" symbol; if it does, it's likely an email address.
-  if (input.includes("@")) {
-    console.log("email");
-  } else {
-    console.log("username");
-  }
-}
-
+const notify = () =>
+    toast.success("Sign In success", {
+      position: "top-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
 export const LogIn = () => {
   const [user, setUser] = useState([]);
   const navigate = useNavigate();
@@ -38,7 +38,7 @@ export const LogIn = () => {
         delete data.input_data;
         const response = await axios.post(
           `http://localhost:2000/users/login`, data
-        );
+        ); notify()
         setUser(response.data[0]);
         localStorage.setItem("token", response.data?.token);
         navigate("/discovery");
@@ -88,7 +88,7 @@ export const LogIn = () => {
             </Typography>
             <form
               onSubmit={formik.handleSubmit}
-              className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
+              className="mt-4 mb-2 w-80 max-w-screen-lg sm:w-96"
             >
               <div className="mb-4 flex flex-col gap-6">
                 <Input
@@ -98,13 +98,7 @@ export const LogIn = () => {
                   name="input_data"
                   value={formik.values.input_data}
                   onChange={formik.handleChange}
-                  // error={formik.touched.email && Boolean(formik.errors.email)}
                 />
-                {/* {formik.touched.email || formik.errors.email ? (
-                  <div className=" text-red-900 mt-[-20px]">
-                    {formik.errors.email} */}
-                {/* </div>
-                ) : null} */}
                 <Input
                   type="password"
                   size="lg"
@@ -130,20 +124,7 @@ export const LogIn = () => {
               >
                 Sign In
               </Button>
-              <div>
-                <Checkbox
-                  label={
-                    <Typography
-                      variant="small"
-                      color="gray"
-                      className="flex items-center font-normal"
-                    >
-                      remember me
-                    </Typography>
-                  }
-                  containerProps={{ className: "-ml-2.5" }}
-                />
-              </div>
+              <ToastContainer />
               <Typography color="gray" className="mt-4 text-center font-normal">
                 Don't have an account?{" "}
                 <a

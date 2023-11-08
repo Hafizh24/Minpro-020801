@@ -121,7 +121,7 @@ module.exports = {
             }
 
             const payload = { id: user.id }
-            const token = jwt.sign(payload, 'LogIn', { expiresIn: '30m' })
+            const token = jwt.sign(payload, 'LogIn')
 
             console.log("ini user", user);
 
@@ -155,7 +155,24 @@ module.exports = {
     },
     editUser: async (req, res) => {
         try {
-            await User.update(req.body, {
+            const { name, email, username, password } = req.body
+            const something = {}
+            if (name) {
+                something.name = name
+            }
+            if (email) {
+                something.email = email
+            }
+            if (username) {
+                something.username = username
+            }
+            if (password) {
+                const salt = await bcrypt.genSalt(10)
+                const hashPassword = await bcrypt.hash(password, salt)
+                something.password = hashPassword
+            }
+            console.log("ini something", req.body);
+            await User.update(something, {
                 where: {
                     id: req.user.id
                 }
@@ -198,14 +215,14 @@ module.exports = {
     },
     deleteAccount: async (req, res) => {
         try{
-            const user = await User.findOne({
+            const user = await User.destroy({
                 where: {
                     id: req.user.id
                 }
             })
 
             console.log(user);
-            await user.destroy()
+            // await user.destroy()
             res.status(200).send('account deleted')
         } catch (err) {
             console.log(err);
