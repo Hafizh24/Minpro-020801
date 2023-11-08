@@ -146,7 +146,7 @@ export function EventTabs({ formik }) {
                   value={formik.values.discount}
                   onChange={formik.handleChange}
                   min="0"
-                  max="1000"
+                  max="30000"
                 />
                 <Input
                   variant="static"

@@ -38,9 +38,11 @@ const router = createBrowserRouter([
 
   {
     path: "/payment",
-    element: <PaymentPage />,
+    element: <PaymentPage />
   },
-  { path: "/tiket", element: <AddToCart /> },
+  { path: "/tiket",
+element: <AddToCart/> 
+}
 ]);
 
 function App() {

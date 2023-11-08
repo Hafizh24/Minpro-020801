@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       User.hasMany(models.Event);
       User.hasOne(models.Referral);
+      User.hasMany(models.Payment);
     }
   }
   User.init(

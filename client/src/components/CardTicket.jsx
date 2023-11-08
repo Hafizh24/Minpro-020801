@@ -31,8 +31,8 @@ const Body = (props) => {
 };
 
 const Footer = (props) => {
-  const { price, setTotalPrice } = props;
-  const [count, setCount] = useState(0);
+  const { count, setCount, price, setTotalPrice } = props;
+  
 
   const addTicket = () => {
     setCount(count + 1);
