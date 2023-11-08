@@ -11,12 +11,13 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Payment.belongsTo(models.User)
     }
   }
   Payment.init({
     isPaid: {
       type: DataTypes.BOOLEAN,
-      defaultValue: false
+      
       
     },
     amount: {
