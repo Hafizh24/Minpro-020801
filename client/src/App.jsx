@@ -34,7 +34,7 @@ const router = createBrowserRouter([
       { path: "/profile", element: <ProfileCard /> },
       { path: "/profile-setting", element: <ProfileSetting />}
     ]
-  }
+  },
 
   {
     path: "/payment",
